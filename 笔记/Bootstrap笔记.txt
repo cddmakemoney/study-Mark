@@ -1,0 +1,505 @@
+	三代：
+
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	四代：
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+四代图标引用：<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+
+Bootstrap 3 和 Bootstrap 4 最大的区别在于 Bootstrap 4 现在使用 flexbox（弹性盒子） 而不是浮动。
+ Flexbox 的一大优势是，没有指定宽度的网格列将自动设置为等宽与等高列
+
+移动设备优先：
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+bootstrap的 .container 类是非常有用的，它能在页面中创建一个居中的区域，然后我们能够把其他位置的内容放到里面。
+container类等价于创建了一个具有静态宽度并且magin值为auto的一个居中的div框。
+twitter bootstrap的 container类的优点在于它是响应式的，它会以当前屏幕的宽度为基础计算出最佳的宽度予以使用。
+.container-fluid 则是一个全宽的容器，使用整个宽度。
+
+
+
+基本样式：
+
+按钮：class="btn btn-info"等等，混合形式：class="btn disabled btn-danger btn-xs"
+表格：<table class="table table-hover">，混合形式同上
+input元素：对输入元素使用class="form-control" 可以去除阴影，边框附带淡蓝色，输入状态更加柔和
+
+文本：text-primary等等
+为了给段落添加强调文本，可以添加 class="lead"，这将得到更大更粗、行高更高的文本
+<p class="text-left">向左对齐文本</p>
+<p class="text-center">居中对齐文本</p>
+<p class="text-right">向右对齐文本</p>
+<p class="text-muted">本行内容是减弱的</p>	//其实就是灰色颜色效果而已，以下的也都是颜色效果
+<p class="text-primary">本行内容带有一个 primary class</p>
+<p class="text-success">本行内容带有一个 success class</p>
+<p class="text-info">本行内容带有一个 info class</p>
+<p class="text-warning">本行内容带有一个 warning class</p>
+<p class="text-danger">本行内容带有一个 danger class</p>
+
+背景：bg-success等等
+
+栅格布局：Bootstrap的栅格系统会默认把一行，分成12列。
+ <div class="col-xs-6 ">数据</div>	：这个里面的数字代表大小，最大就是12；
+
+.col- 针对所有设备
+.col-sm- 平板 - 屏幕宽度等于或大于 576px
+.col-md- 桌面显示器 - 屏幕宽度等于或大于 768px)
+.col-lg- 大桌面显示器 - 屏幕宽度等于或大于 992px)
+.col-xl- 超大桌面显示器 - 屏幕宽度等于或大于 1200px)	//四代才有的
+
+这里是可以写多个大小类型的，例如<div class="col-md-3 col-sm-6">，这样的话就会根据屏幕大小而自动换行，写多一种相当于多一种排列选择
+当同一行的栅格总数超过12的时候，就会自动换行
+行必须放置在 .container class 内，以便获得适当的对齐（alignment）和内边距（padding）。
+
+偏移列：可用来给列腾出更多的空间
+.col-md-offset-4 类将 .col-md-4 元素向右侧偏移了4个列（column）的宽度。
+三代语法：.col-md-offset-*
+四代语法：.offset-md-*
+在使用的时候注意一行最多12列，offset多了便会自动换下一行
+
+嵌套列：
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+	。。。
+        </div>
+        <div class="col-md-9" >
+    	。。。
+            <div class="row">
+                <div class="col-md-6" >
+              	。。。			这里能写两个6而不换行的原因是它把"col-md-9"这9个列，当成了它自己的12列，并不是和原有的row所持有的12列相比
+                </div>
+                <div class="col-md-6">
+
+列排序：通过使用 .col-md-push-* 和 .col-md-pull-* 类就可以很容易的改变列（column）的顺序。
+	<div class="col-md-4">	加上“col-md-push-8”的话，显示效果就相反了
+        		 我在左边
+	</div>
+	<div class="col-md-8" >	 “col-md-pull-4”也如上所述
+       		  我在右边
+	</div>
+
+
+栅格布局基本结构：
+<div class="container">
+   <div class="row">
+      <div class="col-*-*"></div>
+      <div class="col-*-*"></div>      
+   </div>
+   <div class="row">...</div>
+</div>
+
+图片：
+
+三代：
+.img-rounded：添加 border-radius:6px 来获得图片圆角。
+.img-circle：添加 border-radius:50% 来让整个图片变成圆形。
+.img-thumbnail：添加一些内边距（padding）和一个灰色的边框。
+
+
+
+
+
+组件：
+字体图标（四代没有）： class="glyphicon glyphicon-各式各样的图标" https://how2j.cn/k/boostrap/boostrap-font/484.html
+
+按钮组：class="btn-group btn-group-lg"   lg代表大小，所以还有sm、xs（按钮组的意义相当于把按钮合在一起，不留缝隙）
+class里面加上data-toggle="buttons"，在写选框的时候用到，作用是去掉每个选框的小圆圈
+.btn-group-vertical：该 class 让一组按钮垂直堆叠显示，而不是水平堆叠显示。
+
+按钮工具栏：class="btn-toolbar" ：
+该 class 有助于将几组 <div class="btn-group"> 结合到一个 <div class="btn-toolbar"> 中，一般获得更复杂的组件。
+
+
+
+输入框组:class="input-group input-group-lg" 	这个没有xs
+<div class="input-group">
+  <span class="input-group-addon" >@</span>		//如果要放按钮就是<div class="input-group-btn">
+  <input type="text" class="form-control" placeholder="用户名">
+</div>
+
+
+​      
+
+
+
+按钮式下拉菜单：
+<div class="btn-group">//因为这个下拉菜单中的每个选项其实就相当于一个按钮，所以用按钮组；用class="dropdown"也行；如果加上dropup就会有向上展开菜单的效果
+      <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown"> 	
+         default
+         <span class="caret"></span>	//下拉箭头
+      </button>
+
+      <ul class="dropdown-menu" role="menu">	//这里可以加aria-label，用于屏幕阅读器(Screen Reader)，都是为了帮助残障人士更好的识别当前元素。
+         <li>
+            <a href="#">HTML</a>
+         </li>
+         <li role="presentation">//role 是增强语义性，当现有的HTML标签不能充分表达语义性的时候，就可以借助role来说明。
+            <a href="#">CSS</a>
+         </li>
+     <li class="dropdown-header">//菜单标题
+    我是菜单标题
+                </li>
+<li role="presentation" class="divider"></li>	//"divider"是分割线
+         <li role="presentation">
+            <a href="#">Javascript</a>
+         </li>
+         <li role="presentation">
+            <a href="#">AJAX</a>
+         </li>
+      </ul>
+   </div>
+
+导航元素：    【注意如果是在导航栏里的导航元素要写成nav navbar-nav】，单独写的话就如下所示
+<ul class="nav nav-tabs">	//胶囊式：nav-pills  垂直胶囊式：nav-stacked 适应窗口大小变化：nav-justified
+  <li role="presentation" class="active"><a href="#">Java</a></li>
+  <li role="presentation"><a href="#">IOS</a></li>
+  <li role="presentation" class="disabled"><a href="#">Android</a></li>如果添加了 .disabled class，则会创建一个灰色的链接，同时禁用了该链接的 :hover 状态，但只是样式禁用，还是可以点击的
+</ul>
+面包屑导航:
+  <ul class="breadcrumb">
+      <li><a href="#">前端技术</a></li>
+      <li><a href="#">BootStrap </a></li>
+      <li class="active">BootStrap 面包屑导航 </li>
+   </ul>
+
+导航栏：
+<nav class="navbar navbar-default" role="navigation">	// role="navigation"，有助于增加可访问性。
+class：navbar-fixed-top意思是固定在顶端，同理bottom是固定在底部
+导航栏中的表单：.navbar-form class。这确保了表单适当的垂直对齐和在较窄的视口中折叠的行为
+导航栏中的按钮：class .navbar-btn 向不在 <form> 中的 <button> 元素添加按钮，按钮将在导航栏上垂直居中。
+导航栏中的文本：class .navbar-text。这通常与 <p> 标签一起使用，确保适当的前导和颜色。
+class .navbar-left 或 .navbar-right 向左或向右对齐导航栏中的 导航链接、表单、按钮或文本 这些组件。.
+反色导航栏：.navbar-inverse
+
+
+表单：
+把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。
+<form role="form">
+  <div class="form-group">
+    <label for="name">名称</label>
+    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+  </div>
+
+  <div class="form-group">
+    <label for="inputfile">文件输入</label>
+    <input type="file" id="inputfile">
+    <p class="help-block">这里是块级帮助文本的实例。</p>
+  </div>
+
+如果需要创建一个表单，它的所有元素是内联的，向左对齐的，标签是并排的，请向 <form> 标签添加 class .form-inline。
+水平表单：
+请按下面的几个步骤进行：
+向父 <form> 元素添加 class .form-horizontal。
+把标签和控件放在一个带有 class .form-group 的 <div> 中。
+向标签添加 class .control-label。
+
+
+输入框组： 
+<div class="input-group input-group-lg">  //lg表示大号
+            <span class="input-group-addon">@</span>	//作用是加前缀，input-group-btn可以改成按钮前缀
+            <input type="text" class="form-control" placeholder="Twitterhandle">
+</div>
+
+分页：
+  <ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>	//显示效果为当前页
+    <li class="disabled"><a href="#">2</a></li> //显示为禁用
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul>
+
+
+
+翻页:
+  <ul class="pager">	//如果要两边对齐就加类：previous和next
+标签：
+class="label label-各种样式"
+徽章：
+class="badge"
+超大屏幕：
+为了获得占用全部宽度且不带圆角的超大屏幕，请在所有的 .container class 外使用 .jumbotron class
+
+页面标题（Page Header）是个不错的功能，它会在网页标题四周添加适当的间距。
+当一个网页中有多个标题且每个标题之间需要添加一定的间距时，页面标题这个功能就显得特别有用。
+<div class="page-header">
+
+警告：
+<div class="alert alert-success alert-dismissable"> 	//alert-dismissable"加这个表示是可以取消的，但是加不加都可以
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;   //这个是图标
+            </button>
+            <a href="#" class="alert-link">成功！很好地完成了提交。</a>		//alert-link快速提供匹配的颜色链接
+        </div>
+进度条：
+<div class="progress">	//style="height:  XXpx;"可以指定进度条的高度，注意要放在这个父类里面才可以
+  <div class="progress-bar progress-bar-striped active" style="width: 60%;">  //这里的宽度说的是进度；可以加条纹和动态效果
+  </div>
+</div>
+ 
+
+媒体对象：【可用于评论列表与文章列表】
+媒体对象轻量标记、易于扩展的特性是通过向简单的标记应用 class 来实现的。你可以在 HTML 标签中添加以下两种形式来设置媒体对象：
+
+.media：该 class 允许将媒体对象里的多媒体（图像、视频、音频）浮动到内容区块的左边或者右边。
+.media-list：如果你需要一个列表，各项内容是无序列表的一部分，可以使用该 class。
+
+列表组：
+<ul class="list-group">
+  <li class="list-group-item active">回锅肉</li>
+  <li class="list-group-item">烧烤</li>
+  <li class="list-group-item">鱼香肉丝</li>
+  <li class="list-group-item">麻婆豆腐</li>
+  <li class="list-group-item">夫妻肺片</li>
+</ul>
+我们可以向任意的列表项添加徽章组件，它会自动定位到右边。
+文本：class="list-group-item-text" 
+标题：class="list-group-item-heading"
+
+面板：颜色有：panel-primary、panel-success、panel-info、panel-warning、panel-danger
+<div class="panel panel-default">
+  <div class="panel-heading">//标题
+    面板标题
+   </div>
+  <div class="panel-body"> //内容
+   面板内容
+  </div>
+  <div class="panel-footer">//脚注
+   面板脚注
+   </div>
+</div>
+
+
+嵌入效果：<div class="well">文字呈现嵌入效果</div>
+ 尺寸大小：well-lg 、 well-sm
+
+
+辅助类：
+.pull-left		元素浮动到左边	
+.pull-right		元素浮动到右边	
+.center-block	设置元素为 display:block 并居中显示	
+.clearfix		清除浮动	
+.show		强制元素显示	
+.hidden		强制元素隐藏	
+.sr-only		除了屏幕阅读器外，其他设备上隐藏元素	
+.sr-only-focusable	与 .sr-only 类结合使用，在元素获取焦点时显示(如：键盘操作的用户)	
+.text-hide		将页面元素所包含的文本内容替换为背景图	
+.close		显示关闭按钮	
+.caret		显示下拉式功能
+
+响应式实用工具：
+.visible-大小型号
+.hidden-大小型号
+大概意思就是可以测试出你的设备支持显示怎样的布局格式
+
+滚动监听：
+向您想要监听的元素（通常是 body）添加 data-spy="scroll"。然后添加data-target=“值”，这个值是nav 组件的 ID 或 class。
+为了它能正常工作，您必须确保页面主体中有匹配您所要监听链接的 ID 的元素存在。
+使用 data-spy="scroll" 的元素需要将其 CSS position 属性设置为 "relative" 才能起作用
+
+当设置 .navbar-fixed-top 顶部固定，产生遮挡的问题：
+https://cloud.tencent.com/developer/article/1538406
+
+提示工具（tooltip）：
+<a href="#" data-toggle="tooltip" title="Example tooltip">请悬停在我的上面</a>
+这个插件要写脚本：$(function () { $("[data-toggle='tooltip']").tooltip(); });
+可以指定提示位置：data-placement="上下左右"
+
+弹出框（popover）： 比上一个更美观的提示框
+<button type="button" class="btn btn-default" title="Popover title"  //这个是提示框的标题
+           data-toggle="popover" data-placement="left"	//也一样可以指示方向
+            data-content="左侧的 Popover 中的一些内容">  //这个是内容
+        左侧的 Popover
+ </button>
+可以使用 data-trigger="focus" 属性来设置在鼠标点击元素外部区域来关闭弹出框；改成hover可以鼠标悬停出现和消失
+这个插件要写脚本：$(function () { $("[data-toggle='popover']").popover(); });
+
+
+************************************************************************************************************************************
+************************************************************************************************************************************
+************************************************************************************************************************************
+
+四代特性：
+
+比h1更大的标题：display-1, .display-2, .display-3, .display-4。
+
+四代图片：
+.rounded 类可以让图片显示圆角效果
+.rounded-circle 类可以设置椭圆形图片
+.img-thumbnail 类用于设置图片缩略图(图片有边框)
+使用 .float-right 类来设置图片右对齐，使用 .float-left 类设置图片左对齐
+图像有各种各样的尺寸，我们需要根据屏幕的大小自动适应。
+我们可以通过在 <img> 标签中添加 .img-fluid 类来设置响应式图片。
+.img-fluid 类设置了 max-width: 100%; 、 height: auto; 
+
+
+警告框（alert）：
+.alert-dismissible 类，然后在关闭按钮的链接上添加 class="close" 和 data-dismiss="alert" 类来设置提示框的关闭操作。
+
+.fade 和 .show 类用于设置提示框在关闭时的淡出和淡入效果：
+
+块级按钮：.btn-block，就是很大一个的，占了一整行
+.active 类可以设置按钮是可用的， disabled 属性可以设置按钮是不可点击的。 
+注意 <a> 元素不支持 disabled 属性，你可以通过添加 .disabled 类来禁止链接的点击。
+
+徽章：注意这里如果用三代的写法只写badge，是没有徽章的背景的，只有文字而已
+<span class="badge badge-primary">主要</span>
+<span class="badge badge-secondary">次要</span>
+<span class="badge badge-success">成功</span>
+<span class="badge badge-danger">危险</span>
+<span class="badge badge-warning">警告</span>
+<span class="badge badge-info">信息</span>
+<span class="badge badge-light">浅色</span>
+<span class="badge badge-dark">深色</span>
+.badge-pill 药丸形徽章
+.badge-light 如果要把徽章放到按钮里面，要加上这个，不然效果只有数字，没有徽章的背景
+
+进度条：
+progress-bar-animated	放在子类里面，也就是放在progress-bar；这个是动画效果，跟三代的active不同写法
+
+分页：<a class="page-link" href="#">	注意四代的话，这里要加这个类才行，否则就只有很单调的数字的效果而已
+<li class="page-item">	也要加上这个类，否则在这里用不了active
+
+面包屑导航：
+ <li class="breadcrumb-item">要加上这个
+
+链接列表项：要创建一个链接的列表项，可以将 <ul> 替换为 <div> ， <a> 替换 <li>。
+如果想鼠标悬停显示灰色背景就添加.list-group-item-action 类:
+
+Bootstrap4 的卡片类似 Bootstrap 3 中的面板、图片缩略图、well。
+可以使用 .card-title 类来设置卡片的标题 	 .card-text 类用于设置卡片正文的内容	 .card-link 类用于给链接设置颜色。
+<div class="card">
+  <div class="card-header">头部</div>
+  <div class="card-body">内容</div> 
+  <div class="card-footer">底部</div>
+</div>
+
+还可以加背景、文字颜色
+<div class="card bg-primary text-white">
+    <div class="card-body">Primary card</div>
+  </div>
+  <br>
+  <div class="card bg-success text-white">
+    <div class="card-body">Success card</div>
+  </div>
+可以给 <img> 添加 .card-img-top（图片在文字上方） 或 .card-img-bottom（图片在文字下方 来设置图片卡片：
+
+如果图片要设置为背景，可以使用 .card-img-overlay 类:
+<div class="card" >
+  <img class="card-img-top" src="" >
+  <div class="card-img-overlay">
+    <h4 class="card-title">。。。</h4>
+    <p class="card-text">。。。</p>
+    <a href="#" class="btn btn-primary">。。。</a>
+  </div>
+</div>
+
+下拉菜单：
+四代不用加下拉箭头，dropdown会自带的
+.dropdown-divider	  比三代多了个前缀
+菜单选项要加	.dropdown-item	，才会有居中、美观的效果，这点也不同于三代
+如果我们想让下拉菜单右对齐，可以在元素上的 .dropdown-menu 类后添加 .dropdown-menu-right 类。
+在dropdown类或者btn-group 类处添加	.drop方向类，可以将下拉菜单向四个方向弹出，并且下拉箭头方向也会自动改变
+
+折叠：
+三代里面 .show.和in都可以设置默认显示，四代里面.show可以
+
+导航：
+基本格式：<ul class="nav">
+  	<li class="nav-item">
+    	<a class="nav-link" href="#">Link</a>	//nav-link不加的话显得很拥挤
+
+导航栏：
+.navbar-expand-xl  |	  lg  |  md   |  sm   类来创建响应式的导航栏 (大屏幕水平铺开，小屏幕垂直堆叠)。//这里不同三代，不用加navbar-default。并且如果不加这个的话，就会不显示nav
+基本格式：
+<nav class="navbar	 	navbar-expand-sm	 	bg-light 		navbar-light">
+  <ul class="navbar-nav"> 	//不同三代，这里不用再加nav
+collapse导航栏：
+注意是：“toggler”		比三代多了个r
+<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId">
+            <span class="navbar-toggler-icon"></span>	//这里比三代简洁了一点
+</button>
+
+
+
+标签页：
+胶囊状动态选项卡要将代码中 data-toggle 属性设置为 data-toggle="pill"
+然后内容里面的：
+<div class="tab-content">
+  <div class="tab-pane active container" id="home">...</div>	//依旧是tab-pane
+  <div class="tab-pane container" id="menu1">...</div>
+  <div class="tab-pane container" id="menu2">..
+
+输入框组：
+使用 .input-group-prepend 类可以在输入框的的前面添加文本信息， .input-group-append 类添加在输入框的后面。
+<div class="input-group-prepend	 input-group-text">	//要加这个text，否则没有背景
+                  @
+</div>
+
+自定义表单：
+如果要自定义一个复选框，可以设置 <div> 为父元素，类为 .custom-control 和 .custom-checkbox，
+复选框作为子元素放在该 <div> 里头，然后复选框设置为 type="checkbox"，类为 .custom-control-input。
+
+
+工具类：
+居中：使用 .mx-auto 类来设置居中对齐
+宽度：元素上使用 w-* 类 (.w-25, .w-50, .w-75, .w-100, .mw-100) 来设置宽度。这里的数字是百分比的意思
+高度：元素上使用 h-* 类 (.h-25, .h-50, .h-75, .h-100, .mh-100) 来设置高度:
+
+
+
+弹性盒子：
+设置弹性：d-flex
+要求水平弹性：d-inline-flex
+
+设置行里面的元素是正着放还是反着放：     .flex-row 可以设置弹性子元素水平显示，这是默认的。
+			使用 .flex-row-reverse 类用于设置右对齐显示，即与 .flex-row 方向相反。
+
+设置垂直布局：	.flex-column 类用于设置弹性子元素垂直方向显示, .flex-column-reverse 用于翻转子元素：
+
+设置横轴元素排列：	.justify-content-* 类用于修改弹性子元素的排列方式，* 号允许的值有：start (默认), end, center, between 或 around:
+设置竖轴元素排列：		.align-items-*	（start、end、center、around、stretch (默认)）
+			.align-self-*	（start、end、center、baseline、stretch (默认)）
+
+设置各元素宽度：	.flex-fill 类强制设置各个弹性子元素的宽度是一样的，意思就是平均分配
+
+设置元素要不要占用剩下的所有空间：	.flex-grow-1 用于设置子元素使用剩下的空间。（注意这个1的意思是这个元素占用剩下的全部空间）
+				 如果有两个元素都设置了这个类，那这两个元素的占用空间是一样的，以此类推。。。
+
+设置元素的先后顺序：	 .order 类可以设置弹性子元素的排序，从 .order-1 到 .order-12，数字越低权重越高( .order-1 排在 .order-2 之前) 
+
+设置换行：	 .flex-nowrap (默认), .flex-wrap 或 .flex-wrap-reverse。设置 flex 容器是单行或者多行。
+
+
+设置各行之间怎么堆叠：	在垂直方向上如何去堆叠子元素，align-content-*	（start (默认)、end、center、around、stretch）
+
+
+注意这里有个区别：
+align-items：设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式。（写在父元素上）
+align-self：属性用于设置弹性元素自身在侧轴（纵轴）方向上的对齐方式。（写在子元素上）
+
+多媒体：			//这里不用写d-flex就可以写align-self-*
+ <div class="media mt-3">
+            <img src="。。。" class="align-self-center mr-3"
+                style="width:60px">
+            <div class="media-body">
+               。。。
+            </div>
+  </div>
+
+

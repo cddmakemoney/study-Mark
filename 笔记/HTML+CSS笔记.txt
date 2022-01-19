@@ -1,0 +1,334 @@
+./ 	当前路径
+../	上一级路径
+
+尺寸知识：
+px 是像素 比如我们下载图片 1920*1080 就是 宽 1920px 高 1080px
+em是相对于父元素字体大小
+rem是相对于根元素(<html>)的字体大小
+
+模板字符串相当于加强版的字符串，用反引号 `,除了作为普通字符串，还可以用来定义多行字符串，还可以在字符串中加入变量、表达式和函数。
+模板字符串中的换行和空格都是会被保留的
+变量名写在 ${} 中，${} 中可以放入 JavaScript 表达式：
+let name = "Mike";
+let age = 27;
+let info = `My Name is ${name},I am ${age+1} years old next year.`
+console.log(info);
+// My Name is Mike,I am 28 years old next year.
+
+
+字体部分：
+<i>使用 i 标签带来的斜体效果</i>
+
+<em>使用 em 标签带来的斜体效果</em>
+div是块元素，即自动换行
+常见的块元素还有<h1>, <p>, <ul>, <table>
+span是内联元素，即不会换行
+常见的内联元素还有<b>, <td>, <a>, <img>
+
+注释：<!--	-->
+CSS用/*		*/
+
+使用<font>标签表示字体，font常用的属性有 color和size, 分别表示颜色和大小
+（也可以用颜色对应的16进制，比如#ff0000 就表示红色）：
+<font color="blue" size="+2">蓝色大2号字体</font>
+
+<b>b标签粗体效果</b>
+
+<strong>strong标签粗体效果</strong>
+
+空一行：<br>
+
+分割线：<hr>
+
+显示代码：
+<pre>
+。。。
+</pre>
+
+删除效果：
+<del>使用del标签实现的删除效果</del>
+
+<s>使用s标签实现的删除效果，但是不建议使用，因为很多浏览器不支持s标签</s>
+
+下划线：
+<ins>使用ins标签实现的下划线效果</ins>
+ 
+<u>使用u标签实现的下划线效果，但是不建议使用</u>
+
+超链：
+<a href="http://www.12306.com" title="跳转到http://www.12306.com">www.12306.com</a>
+里面加title效果为光标停留时的提示
+禁用链接：style="pointer-events: none; "
+
+缩写：
+HTML 元素提供了用于缩写的标记，比如 WWW 或 HTTP。Bootstrap 定义 <abbr> 元素的样式为显示在文本底部的一条虚线边框，
+当鼠标悬停在上面时会显示完整的文本（只要您为 <abbr> title 属性添加了文本）。
+为了得到一个更小字体的文本，请添加 .initialism 到 <abbr>：
+<abbr title="World Wide Web">WWW</abbr><br>
+<abbr title="Real Simple Syndication" class="initialism">RSS</abbr>
+
+引用：
+<blockquote>
+  这是一个带有源标题的引用。
+  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+</blockquote>
+或者直接用<footer>标签
+
+<mark> 为黄色背景及有一定的内边距
+
+列表：
+列表分无序列表和有序列表
+分别用<ul>标签和<ol>标签表示，然后里面写 <li> 标签表示标签项
+
+<iframe> 即内联框架
+通过内联框架 可以实现在网页中“插入”网页
+ <iframe src="http://www.baidu.com" width="600px" height="400px">
+    </iframe>
+
+
+*******************************************************************************************************
+<label> 标签为 input 元素定义标注（标记）。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此控件。
+就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。
+<label> 标签的 for 属性应当与相关元素的 id 属性相同，只有这样在点击相关文字的时候才会自动将焦点转到和标签相关的表单控件上。
+
+<input type="text"> 即表示文本框。不需要写成<input></input> 这样
+<input type="password"> 即表示密码框
+<input type="radio" > 表示单选框	//注意如果name值一样的话，就只能选一个；如果不一样就能多选
+<input type="button"> 即普通按钮，不具备提交form的效果
+<input type="submit"> 即为提交按钮，用于提交form，把数据提交到服务端
+<input type="reset"> 重置按钮 可以把输入框的改动复原（重置整个form里面的框）
+<input type="image" src="xxx.jpg" > 即使用图像作为按钮进行form的提交
+<input type="checkbox"> 即表示复选框
+默认选中 <input type="radio" checked="checked" >
+属性placeholder，是背景文字
+<button></button>即按钮标签，与<input type="button">不同的是，<button>标签功能更为丰富
+按钮标签里的内容可以是文字也可以是图像
+如果button的type=“submit” ，那么它就具备提交form的功能
+
+input的属性：
+onchange 事件常结合对输入字段的验证来使用。
+
+*******************************************************************************************************
+
+
+
+<form>用于向服务器提交数据，比如账号密码
+get和post的区别
+get
+是form默认的提交方式
+如果通过一个超链访问某个地址，是get方式
+如果在地址栏直接输入某个地址，是get方式
+提交数据会在浏览器显示出来
+不可以用于提交二进制数据，比如上传文件
+
+post
+必须在form上通过 method="post" 显示指定
+提交数据不会在浏览器显示出来
+可以用于提交二进制数据，比如上传文件
+
+<select	size="3" multiple="multiple"（可以多选的意思）> 即下拉列表
+需要配合<option>使用
+<select >
+ <option >苍老师</option>
+ <option selected="selected"（默认选中的意思）>高树玛利亚</option>
+ <option >遥美</option>
+</select>
+
+<textarea> 即文本域
+与文本框不同的是，文本域可以有多行，并且可以有滚动条
+<textarea cols="30" rows="8">（列和行的意思）
+12345678901234567
+1234567890
+1234567890
+1234567890</textarea>
+
+
+********************************************************************************************************
+********************************************************************************************************
+CSS部分：
+可以在head部分直接全局弄好，也可以在body里面一个个弄
+
+选择器主要分3种
+元素选择器：
+p{
+  color:red;
+}
+
+
+id选择器：（ID属性不要以数字开头，数字开头的ID在 Mozilla/Firefox 浏览器中不起作用。）
+
+#p1{	（如果前面加上了标签就说明只有在用这个标签并且也用这个id的时候才能生效，例如：div#p1。
+				如果是div#p1 div就代表对div#p1板块里面所有的div操作）
+  color:blue;
+}
+<p id="p1">id=p1的p</p>
+
+类选择器：（类名的第一个字符不能使用数字！它无法在 Mozilla 或 Firefox 中起作用。）
+.pre{
+  color:blue;
+}
+<p class="pre">前3个</p>
+
+同时根据元素名和class来选择
+p.blue{
+  color:blue;
+}
+<p class="blue">class=blue的p</p>
+**************************************************************
+选择器总结：
+p{ }: 为所有 p 元素指定一个样式。
+.marked{ }: 为所有 class="marked" 的元素指定一个样式。
+.marked p{ }: 为所有 class="marked" 元素内的 p 元素指定一个样式。
+p.marked{ }: 为所有 class="marked" 的 p 元素指定一个样式。
+
+后代选择器(以空格     分隔) 		div p	它后代都能生效
+子元素选择器(以大于 > 号分隔）	div>p	只要是它的儿子，都能生效；孙子及再往后的后代不能生效
+相邻兄弟选择器（以加号 + 分隔）	div+p	第一个兄弟生效
+普通兄弟选择器（以波浪号 ～ 分隔）	div~p	后续所有兄弟生效
+
+串联选择器：
+.bordered {
+  &.float {
+    float: left; 
+  }
+}
+等于
+.bordered.float {
+  float: left; 
+}
+
+【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】
+伪类/伪元素：
+伪类选择元素基于的是当前元素处于的状态，或者说元素当前所具有的特性，而不是元素的id、class、属性等静态的标志。
+由于状态是动态变化的，所以一个元素达到一个特定状态时，它可能得到一个伪类的样式；当状态改变时，它又会失去这个样式。
+由此可以看出，它的功能和class有些类似，但它是基于文档之外的抽象，所以叫伪类。
+
+与伪类针对特殊状态的元素不同的是，伪元素是对元素中的特定内容进行操作，它所操作的层次比伪类更深了一层，也因此它的动态性比伪类要低得多。
+实际上，设计伪元素的目的就是去选取诸如元素内容第一个字（母）、第一行，选取某些内容前面或后面这种普通的选择器无法完成的工作。
+它控制的内容实际上和元素是相同的，但是它本身只是基于元素的抽象，并不存在于文档中，所以叫伪元素。
+
+总结：伪类说的是这个元素的行为，例如hover之类，伪元素说的是具体到这个元素的内容，例如：first-letter
+例如：
+[title]
+{
+color:blue;
+}
+
+所以对元素选择器可以更加细致的使用以便精确到它的属性：
+input[type="text"]
+{
+	width:150px;
+	display:block;
+	margin-bottom:10px;
+	background-color:yellow;
+}	意思就是对input元素并且它的type为text的元素作出调整
+
+input[type=text]:focus {
+  background-color: lightblue;
+}	
+伪类focus可以在选择输入框的时候作出调整
+p:before
+{ 
+	content:"Read this -";
+	background-color:yellow;
+	color:red;
+	font-weight:bold;
+}
+这个样式的意思就是在每个P元素前面都加上自定义的一个内容
+
+【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】
+text-decoration：文本修饰
+h1 {text-decoration: overline}	上划线
+h2 {text-decoration: line-through}删除效果
+h3 {text-decoration: underline}下划线
+.a {text-decoration: none}超链去除下划线
+
+文本：
+letter-spacing: 2px; 字符间隔两个像素点的意思
+word-spacing：单词间距
+text-indent 首行缩进
+text-transform：大小写
+值：uppercase 全部大写
+capitalize 首字母大写
+lowercase 全部小写
+
+字体：
+
+font-size字体大小
+font-style:	normal 标准字体		italic 斜体
+font-weight	normal 标准粗细	bold 粗一点
+font-family：字库
+鼠标样式：cursor:		https://how2j.cn/k/css2/css2-cursor/782.html （太多了）
+
+边框：border-style
+solid: 实线
+dotted:点状
+dashed:虚线
+double:双线
+border-color：边框颜色
+border-width：边框宽度
+border-radius: XXpx;      给边框变成圆角
+box-sizing: border-box属性可以设置 width 和 height 属性中包含了 padding(内边距) 和 border(边框)。
+outline轮廓：相当于边框的边框
+
+内边距：
+padding
+值：如果只写一个，即四个方向的值
+值：如果写四个，即四个方向的值
+上 右 下 左,依顺时针的方向依次赋值
+margin同理
+像span这样的内联元素，默认情况下，【只有左右外边距，没有上下外边距。】 为了观察上下外边距的效果，可以采用块级元素，比如div.
+margin: 10px auto 	（这个AUTO意思是左右剩余空间均匀分配，所以会有居中的效果）
+
+超链状态有4种
+link - 初始状态，从未被访问过
+visited - 已访问过
+hover - 鼠标悬停于超链的上方
+active - 鼠标左键点击下去，但是尚未弹起的时候
+
+<link rel="stylesheet" type="text/css" href="file://d:/ss.css" />
+rel定义当前文档与被链接文档之间的关系
+type定义当前页面的内容是text或者CSS文件，因此去掉也不影响什么
+
+!important：CSS优先级
+
+绝对定位：属性：position
+值： 
+absolute
+z-index属性， 当z-index的值越大，就表示放上面，z-index:越小就表示放下面。
+fixed固定 	sticky粘性定位
+relative 定位，相对定位元素的定位是相对其正常位置。
+
+浮动属性：float
+值： left,right
+
+不允许浮动属性:clear
+值: left right both none
+
+**************************************换不换行的技巧，这个挺重要的
+display:block; 表示块级元素
+display:inline; 表示内联元素
+内联是不换行，但是不能指定大小
+块级时能指定大小，但是会换行，
+有时候，需要元素处于同一行，同时还能指定大小，这个时候，就需要用到内联-块级 inline-block
+
+&&&&&&&&&&&&&&&&&设计导航栏鼠标悬停出现菜单效果：其实就是先把菜单display:none，
+再写个
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+就行了，原理就是.dropdown-content 本来被我none在页面了，现在我把display覆盖下设定为主动悬停才会出现在页面上
+它的淡出效果：opacity: 0;
+  	       transition: opacity 0.5s;     0.5秒内完成显示
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;	1代表100%显示出来
+
+水平导航栏就是float：left的效果
+}
+
+
+元素居中对齐：margin: auto;
+文本居中对齐：text-align: center;
+图片居中对齐：使用 margin: auto; 并将它放到 块 元素中:
