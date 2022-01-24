@@ -17,7 +17,7 @@
 
 VUE3路由跟二代有点区别，入口文件的写法：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps1.jpg) 
+![img](README/wps1-16430465775711.jpg) 
 
 
 
@@ -25,7 +25,7 @@ VUE3路由跟二代有点区别，入口文件的写法：
 
 路由文件的写法：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps2.jpg) 
+![img](README/wps2-16430465806112.jpg) 
 
 
 
@@ -45,7 +45,7 @@ https://blog.csdn.net/qq_34877350/article/details/107967929
 
 注意要开启这个插件的这个选项，否则在引入CSS文件的时候不会生效，原理就是开启补全文件后缀功能：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps3.jpg) 
+![img](README/wps3-16430465832193.jpg) 
 
  
 
@@ -53,15 +53,15 @@ https://blog.csdn.net/qq_34877350/article/details/107967929
 
 Element plus组件库按需引入：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps4.jpg) 
+![img](README/wps4-16430465845204.jpg) 
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps5.jpg) 
+![img](README/wps5-16430465856645.jpg) 
 
  
 
 **六、**
 
-Vue3中的method是这么写的：![image-20220119230811005](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220119230811005.png)
+Vue3中的method是这么写的：![image-20220119230811005](README/image-20220119230811005.png)
 
 因为由于在执行setup函数时候，还没有执行created生命周期方法，所以在setup函数中，是无法使用data和methods的。
 
@@ -71,33 +71,33 @@ Vue3中的method是这么写的：![image-20220119230811005](C:\Users\lenovo\App
 
 问题，表单重置：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps6.jpg) 
+![img](README/wps6-16430465910236.jpg) 
 
 
 
 表单头元素绑定好ref之后，在setup写逻辑：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps7.jpg) 
+![img](README/wps7-16430465965967.jpg) 
 
 
 
 登录功能：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps8.jpg) 
+![img](README/wps8-16430466162958.jpg) 
 
 
 
 存储TOKEN值并且跳转到主页，这里要先import路由文件：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps9.jpg) 
+![img](README/wps9-16430466189919.jpg) 
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps10.jpg) 
+![img](README/wps10-164304662067310.jpg) 
 
  
 
 拦截器设置：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps11.jpg) 
+![img](README/wps11-164304662195111.jpg) 
 
  
 
@@ -107,27 +107,27 @@ Vue3中的method是这么写的：![image-20220119230811005](C:\Users\lenovo\App
 
 直接用数组给定义的reactive对象直接赋值是不行的，这样会丢失响应式，V-for也识别不到
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps12.jpg) 
+![img](README/wps12-164304662402512.jpg) 
 
 注意！如果直接这么定义数组的话，这个数组确实能接收到数据，也确实存储了。但是VUE监测不到！因为它既不是ref定义也不是reactive定义，即它不是响应式数据，所以VUE监测不到，自然页面就显示不出效果
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps13.jpg) 
+![img](README/wps13.jpg) 
 
 同理，这个取反效果，也一定要ref，否则什么都不定义直接等于一个布尔值的话，取反是取反了，但是VUE监测不到
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps14.jpg) 
+![img](README/wps14.jpg) 
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps15.jpg) 
+![img](README/wps15.jpg) 
 
  **九、**
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps16.jpg) 
+![img](README/wps16.jpg) 
 
 V-slot:default缩写是#default，scope是自定义名字
 
 官网对这个插槽的解释
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps17.jpg) 
+![img](README/wps17.jpg) 
 
 
 
@@ -137,17 +137,17 @@ V-slot:default缩写是#default，scope是自定义名字
 
 而这时候我的版本是最新的：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps19.jpg) 
+![img](README/wps19.jpg) 
 
 又恰好最近官方做了点更新：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps20.jpg) 
+![img](README/wps20.jpg) 
 
 导致我在网上找的设置中文的文章99%都没用，浪费了我极大的精力和时间
 
 正确方法：https://blog.csdn.net/qq_45747841/article/details/119169126
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps21.jpg) 
+![img](README/wps21.jpg) 
 
  
 
@@ -155,7 +155,7 @@ V-slot:default缩写是#default，scope是自定义名字
 
  **十一、**
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps22.jpg) 
+![img](README/wps22.jpg) 
 
 这里发现检查规则很多组件都在用，干脆把它单独拿出来了，用法就是这种A:B带冒号的写法，加个readonly意思是只读，不修改
 
@@ -163,7 +163,7 @@ V-slot:default缩写是#default，scope是自定义名字
 
 小知识：导入子组件时，最好大写字母开头，这样在模板里面显示子组件标签的颜色才会是绿色
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps23.jpg) 
+![img](README/wps23.jpg) 
 
  
 
@@ -171,7 +171,7 @@ V-slot:default缩写是#default，scope是自定义名字
 
 又是粗心大意，这个错误浪费了我一个晚上的时间
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps24.jpg) 
+![img](README/wps24.jpg) 
 
 这个错误主要原因是showId定义了之后，紧接着在下面函数里就使用了，导致这个变量不是暗色的，我便误以为这个变量已经return出去了。
 
@@ -183,17 +183,17 @@ V-slot:default缩写是#default，scope是自定义名字
 
 鉴定props的多个值
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps25.jpg) 
+![img](README/wps25.jpg) 
 
 鉴定一个值：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps26.jpg) 
+![img](README/wps26.jpg) 
 
  
 
 两个参数都是可选的，所以也可以这么写：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps27.jpg) 
+![img](README/wps27.jpg) 
 
 
 
@@ -203,15 +203,15 @@ XXXXX' is constant，碰到这种问题一般都是直接跟响应式对象直�
 
 今天碰到的问题就是这个，有一下几种方式解决：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps28.jpg) 
+![img](README/wps28.jpg) 
 
 给reactive里面再加一个对象，意思就是不直接赋值给reactive，而是赋值给reactive里面的一个对象，这样就不会触发赋值错误，注意上面表单的使用也要是这样设置：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps29.jpg) 
+![img](README/wps29.jpg) 
 
 另一种方法就是用ref，这样目前觉得比较简单：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps30.jpg) 
+![img](README/wps30.jpg) 
 
  
 
@@ -225,6 +225,6 @@ XXXXX' is constant，碰到这种问题一般都是直接跟响应式对象直�
 
 Console.log出现这个黄色警告，对代码没影响，但是看着很恶心，网上说的方法都没用，其实重启一下浏览器就解决了。其实就是安装在谷歌浏览器上的VUE调试插件引起的
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml5628\wps31.jpg) 
+![img](README/wps31.jpg) 
 
 设计到更新列表的操作，尽量放到then里面，因为发现有的VUE文件不放到里面的话，页面不会及时刷新

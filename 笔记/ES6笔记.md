@@ -40,7 +40,7 @@ Promise对象代表一个异步操作，有三种状态：pending（进行中）
 
 ）一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）
 
- <img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220113173412850.png" alt="image-20220113173412850" style="zoom:67%;" />
+ <img src="README/image-20220113173412850.png" alt="image-20220113173412850" style="zoom:67%;" />
 
 输出结果一样
 
@@ -48,7 +48,7 @@ Promise成功的情况对应的是await
 
 失败的捕获用try catch 
 
-<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220113224550425.png" alt="image-20220113224550425" style="zoom: 67%;" />
+<img src="README/image-20220113224550425.png" alt="image-20220113224550425" style="zoom: 67%;" />
 
  
 
@@ -62,7 +62,7 @@ Await只能在异步函数中出现
 
 Promise.all()方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。
 
-![image-20220113173620145](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220113173620145.png)
+![image-20220113173620145](README/image-20220113173620145.png)
 
 p的状态由p1、p2、p3决定，分成两种情况。
 
@@ -72,7 +72,7 @@ p的状态由p1、p2、p3决定，分成两种情况。
 
 Promise.race()方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。
 
-![image-20220113173543876](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220113173543876.png)
+![image-20220113173543876](README/image-20220113173543876.png)
 
 上面代码中，只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。
 
@@ -84,7 +84,7 @@ Promise.race()方法同样是将多个 Promise 实例，包装成一个新的 Pr
 
 Promise异常穿透：then链式调用，可以在最后指定失败的回调
 
-![image-20220113173633731](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220113173633731.png)
+![image-20220113173633731](README/image-20220113173633731.png)
 
 # set
 
@@ -92,7 +92,7 @@ Promise异常穿透：then链式调用，可以在最后指定失败的回调
 
 有什么用？举例，数组去重：
 
-![image-20220113220629168](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220113220629168.png)
+![image-20220113220629168](README/image-20220113220629168.png)
 
 
 

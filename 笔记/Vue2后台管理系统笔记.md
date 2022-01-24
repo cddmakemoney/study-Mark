@@ -22,13 +22,13 @@ npm install babel-plugin-component -D
 
 欢迎界面放了张壁纸，想全填充div，发现el-main自带padding:20px
 
-所以设置0px：![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps1.jpg)
+所以设置0px：![img](README/wps1.jpg)
 
-然后壁纸就：![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps2.jpg)
+然后壁纸就：![img](README/wps2.jpg)
 
 但是有个蛋疼的地方，就是壁纸下面还有一丝丝空白，看着不完美，查了半天原来
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps3.jpg) 
+![img](README/wps3.jpg) 
 
 解决方案如上图img格式：加个display:flex 就好
 
@@ -36,17 +36,17 @@ npm install babel-plugin-component -D
 
 所以换了个方式，单纯给图片设置：
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps4.jpg) 
+![img](README/wps4.jpg) 
 
 
 
 **三、**
 
-上面壁纸问题的后续有了完美解决方案：![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps5.jpg)
+上面壁纸问题的后续有了完美解决方案：![img](README/wps5.jpg)
 
 给整个router-view绑定了回调函数，并指定在welcome组件中emit这个函数
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps6.jpg) 
+![img](README/wps6.jpg) 
 
 从而调整父组件的padding
 
@@ -58,9 +58,9 @@ npm install babel-plugin-component -D
 
 菜单事件
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps7.jpg) 
+![img](README/wps7.jpg) 
 
-事件是通过回调完成的![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps8.jpg)
+事件是通过回调完成的![img](README/wps8.jpg)
 
 这里不用写括号，下面写函数时写两个参数接收就好
 
@@ -68,7 +68,7 @@ npm install babel-plugin-component -D
 
 所以这里菜单事件是做不到的，于是我改成点击调用函数，然后调用事件方法
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps9.jpg) 
+![img](README/wps9.jpg) 
 
 注意这里要加native修饰符，否则不会生效，因为如果不加的话组件会以为click是它的回调事件
 
@@ -78,7 +78,7 @@ npm install babel-plugin-component -D
 
 与事件用法@不同，方法是通过ref调用
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps10.jpg) 
+![img](README/wps10.jpg) 
 
 在菜单栏那里写好ref再调用
 
@@ -90,7 +90,7 @@ npm install babel-plugin-component -D
 
 如果不加全局样式样式，就会出现显示选择列表过长导致乱套了的现象
 
-![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps11.jpg) 
+![img](README/wps11.jpg) 
 
 methods里面，一定不要忘了加this，马虎很多次了
 
@@ -128,7 +128,7 @@ Element UI如果要设置某个组件的特定细节样式，但是不知道这�
 
 ​	这里差点步入歧途，我发现开发模式和线上部署到服务器之后的样式不一样，我以为是什么不可避免的BUG，正准备打开线上的样式F12调试一个一个对级联选择器中的各种小样式更改。
 
-但是忽然我想到我开发模式![img](file:///C:\Users\lenovo\AppData\Local\Temp\ksohtml13400\wps12.jpg)
+但是忽然我想到我开发模式![img](README/wps12.jpg)
 
 而线上模式我为了减少打包体积，用的CDN引入，并且版本还是2.15.7的。然后我马上把线上模式组件导入改成import，果不其然，样式正常了
 
