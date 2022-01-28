@@ -1,8 +1,14 @@
-JavaScript 可以通过不同的方式来输出数据：
-使用 window.alert() 弹出警告框。
-使用 document.write() 方法将内容写到 HTML 文档中。
-使用 innerHTML 写入到 HTML 元素。
-使用 console.log() 写入到浏览器的控制台。
+# JavaScript
+
+## **IIFE（ 立即调用函数表达式）**
+
+是一个在定义时就会立即执行的函数
+
+```
+(function () {
+    statements
+})();//这里如果有参数，会传给上面的括号
+```
 
 如果重新声明 JavaScript 变量，该变量的值不会丢失。
 
@@ -12,54 +18,6 @@ JavaScript 可以通过不同的方式来输出数据：
 或者'	"love"	'  总之最外层包裹字符串的引号（不管单双），不能和里面的相同
 
 如果数字与字符串相加，返回字符串
-
-【【		JSON 是 JS 对象的字符串表示法，它使用文本表示一个 JS 对象的信息，本质是一个字符串。		】】
-对象：
-var person = {
-    firstName : "John",
-    lastName  : "Doe",
-    age       : 50,
-    eyeColor  : "blue"
-};
-
- JSON 对象：
- var JSONObject= {
-    "name":"德邦",
-    "url":"www.LOL.com", 
-    "slogan":"一点寒芒先到，随后枪出如龙"
-};
-
-
-普通方法写法：
-<script>
-function myFunction()
-{
-    alert("Hello World!");
-}
-</script>
-
-
-对象中写方法：		
-方法名 ： function()		
-或者直接：方法名（）
-{				         {
-.....				         ....
-}				         }
-
-用for-in来循环对象的属性：
-var myObj = { "name":"runoob", "alexa":10000, "site":null };
-for (x in myObj) {
-    document.getElementById("demo").innerHTML += x + "<br>";
-}
-
-可以使用 delete 关键字来删除 JSON 对象的属性：
-
-【要实现从JSON字符串转换为JS对象，使用 JSON.parse() 方法】：
-var obj = JSON.parse('{"a": "Hello", "b": "World"}');
-同样的也可以使用函数 eval() 将 JSON 文本转换为 JavaScript 对象。
-
-【要实现从JS对象转换为JSON字符串，使用 JSON.stringify() 方法】：
-var obj = JSON.stringify({a: 'Hello', b: 'World'}); 	//或者括号里面直接放JS对象的引用
 
 
 
@@ -73,27 +31,6 @@ null 和 undefined 的值相等，但类型不等
 className=“XXX”给元素完全修改为改类所含的样式
 className+=" XXX"（注意要有空格）给元素添加类所含样式
 className=className.replace("XXX","") 移除类所含样式
-
-正则表达式：/***/修饰符(可选)    ***代表内容
-search() 方法 用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子串的起始位置。
-replace() 方法 用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
-
-"use strict"; 严格模式写在脚本或者函数开头
-
-NaN：not a number
-
-input 元素的 validity 属性包含一系列关于 validity 数据属性:
-
-属性	描述
-customError	设置为 true, 如果设置了自定义的 validity 信息。
-patternMismatch	设置为 true, 如果元素的值不匹配它的模式属性。
-rangeOverflow	设置为 true, 如果元素的值大于设置的最大值。
-rangeUnderflow	设置为 true, 如果元素的值小于它的最小值。
-stepMismatch	设置为 true, 如果元素的值不是按照规定的 step 属性设置。
-tooLong		设置为 true, 如果元素的值超过了 maxLength 属性设置的长度。
-typeMismatch	设置为 true, 如果元素的值不是预期相匹配的类型。
-valueMissing	设置为 true，如果元素 (required 属性) 没有值。
-valid		设置为 true，如果元素的值是合法的。
 
 
 
@@ -140,12 +77,13 @@ javascript:void(0) 该操作符指定要计算一个表达式但是不返回值�
 var x = function (a, b) {return a * b};
 这种就是匿名函数 ，函数存储在变量中，不需要函数名称，通常通过变量名来调用。
 
-箭头函数：
+## 箭头函数
+
 // ES5
 var x = function(x, y) {
      return x * y;
 }
- 
+
 // ES6
 const x = (x, y) => x * y;		//箭头后面只有一行代码且不加花括号，默认自带return；
 				如果有多行代码要写，要带花括号，并且这时候手动加上return
@@ -158,7 +96,7 @@ ES6 支持函数带有默认参数：function myFunction(x, y = 10)	//意思就�
 
 JavaScript 函数有个内置的对象 arguments 对象：
 x = findMax(1, 123, 500, 115, 44, 88);
- 
+
 function findMax() {
     var i, max = arguments[0];
 .........
@@ -167,11 +105,65 @@ function findMax() {
 
 
 
+## 闭包（Closure）
+
+概念：内层的作用域访问它外层函数作用域里的参数/变量/函数时，闭包就产生了。
+
+<img src="README/image-20220128154539373.png" alt="image-20220128154539373" style="zoom:80%;" />
 
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-JS HTML DOM:
+![image-20220128154603923](README/image-20220128154603923.png)
+
+# JSON
+
+**JSON 是 JS 对象的字符串表示法，它使用文本表示一个 JS 对象的信息，本质是一个字符串
+对象：
+var person = {
+    firstName : "John",
+    lastName  : "Doe",
+    age       : 50,
+    eyeColor  : "blue"
+};
+
+ JSON 对象：
+ var JSONObject= {
+    "name":"德邦",
+    "url":"www.LOL.com", 
+    "slogan":"一点寒芒先到，随后枪出如龙"
+};
+
+
+普通方法写法：
+<script>
+function myFunction()
+{
+    alert("Hello World!");
+}
+</script>
+
+
+用for-in来循环对象的属性：
+var myObj = { "name":"runoob", "alexa":10000, "site":null };
+for (x in myObj) {
+    document.getElementById("demo").innerHTML += x + "<br>";
+}
+
+可以使用 delete 关键字来删除 JSON 对象的属性：
+
+**要实现从JSON字符串转换为JS对象，使用 JSON.parse() 方法：**
+var obj = JSON.parse('{"a": "Hello", "b": "World"}');
+同样的也可以使用函数 eval() 将 JSON 文本转换为 JavaScript 对象。
+
+**要实现从JS对象转换为JSON字符串，使用 JSON.stringify() 方法：**
+var obj = JSON.stringify({a: 'Hello', b: 'World'}); 	//或者括号里面直接放JS对象的引用
+
+
+
+
+
+# DOM
+
 addEventListener() 方法用于向指定元素添加事件句柄。
 addEventListener() 方法添加的事件句柄不会覆盖已存在的事件句柄。
 你可以向一个元素添加多个事件句柄。
@@ -196,7 +188,7 @@ element.addEventListener(event, function, useCapture);
 <p id="p1">这是一个段落。</p>
 <p id="p2">这是另外一个段落。</p>
 </div>
- 
+
 <script>
 var parent = document.getElementById("div1");
 var child = document.getElementById("p1");
