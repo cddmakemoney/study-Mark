@@ -10,6 +10,46 @@
 })();//这里如果有参数，会传给上面的括号
 ```
 
+## 箭头函数
+
+// ES5
+var x = function(x, y) {
+     return x * y;
+}
+
+// ES6
+const x = (x, y) => x * y;		//箭头后面只有一行代码且不加花括号，默认自带return；
+				如果有多行代码要写，要带花括号，并且这时候手动加上return
+
+
+这里使用 const 比使用 var 更安全，因为函数表达式始终是一个常量。
+
+ES5 中如果函数在调用时未提供隐式参数，参数会默认设置为： undefined
+ES6 支持函数带有默认参数：function myFunction(x, y = 10)	//意思就是说如果调用函数时只写了一个参数，那就默认第二个参数为10
+
+JavaScript 函数有个内置的对象 arguments 对象：
+x = findMax(1, 123, 500, 115, 44, 88);
+
+function findMax() {
+    var i, max = arguments[0];
+.........
+}
+这样可以快速引用参数
+
+
+
+## 闭包（Closure）
+
+概念：内层的作用域访问它外层函数作用域里的参数/变量/函数时，闭包就产生了。
+
+<img src="README/image-20220128154539373.png" alt="image-20220128154539373" style="zoom:80%;" />
+
+
+
+![image-20220128154603923](README/image-20220128154603923.png)
+
+## 杂项知识点
+
 如果重新声明 JavaScript 变量，该变量的值不会丢失。
 
 如果变量在函数内没有声明（没有使用 var 关键字），该变量为全局变量。
@@ -76,44 +116,6 @@ javascript:void(0) 该操作符指定要计算一个表达式但是不返回值�
 函数表达式可以存储在变量中：
 var x = function (a, b) {return a * b};
 这种就是匿名函数 ，函数存储在变量中，不需要函数名称，通常通过变量名来调用。
-
-## 箭头函数
-
-// ES5
-var x = function(x, y) {
-     return x * y;
-}
-
-// ES6
-const x = (x, y) => x * y;		//箭头后面只有一行代码且不加花括号，默认自带return；
-				如果有多行代码要写，要带花括号，并且这时候手动加上return
-
-
-这里使用 const 比使用 var 更安全，因为函数表达式始终是一个常量。
-
-ES5 中如果函数在调用时未提供隐式参数，参数会默认设置为： undefined
-ES6 支持函数带有默认参数：function myFunction(x, y = 10)	//意思就是说如果调用函数时只写了一个参数，那就默认第二个参数为10
-
-JavaScript 函数有个内置的对象 arguments 对象：
-x = findMax(1, 123, 500, 115, 44, 88);
-
-function findMax() {
-    var i, max = arguments[0];
-.........
-}
-这样可以快速引用参数
-
-
-
-## 闭包（Closure）
-
-概念：内层的作用域访问它外层函数作用域里的参数/变量/函数时，闭包就产生了。
-
-<img src="README/image-20220128154539373.png" alt="image-20220128154539373" style="zoom:80%;" />
-
-
-
-![image-20220128154603923](README/image-20220128154603923.png)
 
 # JSON
 
