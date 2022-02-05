@@ -198,6 +198,17 @@ p.marked{ }: 为所有 class="marked" 的 p 元素指定一个样式。
   float: left; 
 }
 
+CSS变量：  
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties
+是有作用域的，如需创建具有全局作用域的变量，请在 :root 选择器中声明它。
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+}
+//使用定义的变量
+h2 { border-bottom: 2px solid var(--blue); }
+
+
 【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】
 伪类/伪元素：
 常见伪类——:hover,:link,:active,:target,:not(),:focus。
