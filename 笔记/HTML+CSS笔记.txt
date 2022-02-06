@@ -206,7 +206,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties
   --white: #ffffff;
 }
 //使用定义的变量
-h2 { border-bottom: 2px solid var(--blue); }
+h2 { border-bottom: 2px solid var(--blue,red); }		//第二个参数red的意思是如果没有--blue这个变量，则使用默认值：red
 
 
 【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】
