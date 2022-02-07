@@ -1,3 +1,9 @@
+名词解释：
+
+`module`，`chunk` 和 `bundle` 其实就是同一份逻辑代码在不同转换场景下的取了三个名字：
+
+我们直接写出来的是 `module`，`webpack` 处理时是` chunk`，最后生成浏览器可以直接运行的 `bundle`。
+
 # 安装
 
 确保安装了node，然后在工作目录下`npm init -y`
@@ -5,6 +11,14 @@
 然后在目录下本地安装：`npm i webpack webpack-cli -D`
 
 这时我用的不是全局安装webpack，所以直接`webapack`是不行的，要：`npx webpack`
+
+但是如果在`package.json`里面设置脚本，就不用写npx了：
+
+![image-20220207143513715](README/image-20220207143513715.png)
+
+当然前提是本地目录有：
+
+![image-20220207143615716](README/image-20220207143615716.png)
 
 修改源文件保存自动打包：`npx webpack --watch`。这样就不必每次修改代码都要手动`npx webpack`了
 
@@ -20,14 +34,14 @@
 
 # 资源模块
 
-作用：引入外部资源并模块化处理（如字体、图片等）
+**`webpack5`新特性**
 
-- asset/resource 发送一个单独的文件并导出 URL。之前通过使用 file-loader 实现。
-- asset/inline 导出一个资源的 data URI。之前通过使用 url-loader 实现。
-- asset/source 导出资源的源代码。之前通过使用 raw-loader 实现。
-- asset 在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用 url-loader，并且配置资源体积限制实现。
+作用：资源模块(asset module)是一种模块类型，它允许使用资源文件（字体，图标等）而无需配置额外 loader。
 
-
+- `asset/resource` 发送一个单独的文件并导出 URL。之前通过使用 `file-loader` 实现。
+- `asset/inline` 导出一个资源的 data URI。之前通过使用 `url-loader` 实现。
+- `asset/source` 导出资源的源代码。之前通过使用 `raw-loader` 实现。
+- `asset` 在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用 `url-loader`，并且配置资源体积限制实现。
 
 重点是type属性，用于指定类型：
 
@@ -37,7 +51,7 @@
 
 ## loader
 
-作用：也是引入外部资源并模块化处理
+`webpack` 只能理解 `JavaScript` 和` JSON `文件，这是 `webpack` 开箱可用的自带能力。**loader** 让 `webpack `能够去处理其他类型的文件，并将它们转换为有效模块，以供应用程序使用，以及被添加到依赖图中。
 
 有两个属性：`test`和`use`
 
@@ -48,6 +62,8 @@
 例如：
 
 ![image-20220207002657037](README/image-20220207002657037.png)
+
+多个`loader`就用数组，只有一个也可以这么写：![image-20220207192917938](README/image-20220207192917938.png)
 
 ## 加载CSS
 
@@ -60,6 +76,8 @@
 `style-loader`的作用是在打包后的`html`文件的`head`标签里写入`style`标签并写入样式
 
 但是后面会把CSS样式抽离出来便于管理，所以后面也就用不到`style-loader`了
+
+use数组中执行顺序：从右到左
 
 ## 抽离和压缩CSS
 
@@ -89,11 +107,23 @@
 
 ![image-20220207004534973](README/image-20220207004534973.png)
 
-## babel-loader
+## 压缩JS
+
+```console
+npm install terser-webpack-plugin --save-dev
+```
+
+配置：
+
+![image-20220207141228401](README/image-20220207141228401.png)
+
+![image-20220207141239368](README/image-20220207141239368.png)
+
+# babel-loader
 
 `babel`和`webapck`结合需要`babel-loader`
 
-结合的作用：`webpakck`本身只能做JS模块化的打包，并不支持JS转化，所以为了防止浏览器版本过低，不支持ES6+代码，要使用`babel`：它可以将ES6+转成ES5
+结合的作用：`webpack`本身只能做JS模块化的打包，并不支持JS转化，所以为了防止浏览器版本过低，不支持ES6+代码，要使用`babel`：它可以将ES6+转成ES5
 
 要安装三个东西：
 
@@ -111,5 +141,45 @@
 
 
 
+#  缓存
 
+作用：提高打开速度，节省流量
+
+打包后的dist文件夹部署到服务器上时，如果资源的文件名没有更改，浏览器会以为没有对代码进行修改，从而使用它的缓存版本（即使我们已经修改了代码）
+
+解决办法：![image-20220207125009087](README/image-20220207125009087.png)
+
+根据资源内容生成唯一hash值，并命名到文件名中
+
+
+
+## 缓存第三方库
+
+因为这些东西我们很少、甚至不会修改，所以可以利用浏览器的长效缓存机制，命中缓存来消除请求。减轻服务器获取资源压力。
+
+![image-20220207130247838](README/image-20220207130247838.png)
+
+`vendor`将会被单独打包出来：![image-20220207130557605](README/image-20220207130557605.png)
+
+
+
+
+
+# 拆分开发环境和生产环境
+
+创建一个文件夹`config`，存放配置文件
+
+![image-20220207144925547](README/image-20220207144925547.png)
+
+common存放的是公用的配置，dev和prod文件则只需写明和common文件不一样的配置即可：
+
+![image-20220207145027640](README/image-20220207145027640.png)
+
+`webpack.config.js`作用则是`merge`配置文件，用到的插件`webpack-merge`
+
+![image-20220207145157852](README/image-20220207145157852.png)
+
+然后在`package.json`写明脚本即可：
+
+![image-20220207145255675](README/image-20220207145255675.png)
 
