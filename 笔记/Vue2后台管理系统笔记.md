@@ -6,15 +6,45 @@
 
 **一、**
 
-VUE2.0 引入element UI：
+VUE2.0 引入`element UI`：
 
 https://element.eleme.cn/#/zh-CN/component/quickstart
 
-npm i element-ui
+`npm i element-ui`
 
-npm install babel-plugin-component -D
+完整引入：
 
-再修改babel.config.js按照官网的内容修改
+`import ElementUI from 'element-ui'; `
+
+`import 'element-ui/lib/theme-chalk/index.css';`
+
+`Vue.use(ElementUI);`
+
+按需引入：
+
+`npm install babel-plugin-component -D`
+
+再修改`babel.config.js`：
+
+```js
+module.exports = {
+  presets: [
+    '@vue/cli-plugin-babel/preset'
+  ],
+  'plugins': [
+    [
+      'component',
+      {
+        'libraryName': 'element-ui',
+        'styleLibraryName': 'theme-chalk'
+      }
+    ],
+    "@babel/plugin-syntax-dynamic-import"
+
+  ]
+}
+
+```
 
  
 
