@@ -66,15 +66,45 @@ v-model 指令用来在 input、select、textarea、checkbox、radio 等表单�
 
 
 
+# 服务端渲染
+
+## Nuxt.js
+
+Nuxt.js 是一个基于 Vue.js 的通用应用框架，重点是实现了服务端渲染
+
+创建：`npx create-nuxt-app [name]`
+
+Nuxt.js 会依据 `pages` 目录结构自动生成模块的路由配置。
+
+![image-20220226152616245](README/image-20220226152616245.png)
+
+关闭`eslint`语法检查，注释掉`nuxt.config.js`中的这一配置项
+
+![image-20220226155952397](README/image-20220226155952397.png)
+
+目录下新建一个`src`文件夹，保持与`vue`项目目录的一致性会顺眼一点，新建时发现有的文件夹没有，新建一个就行了：
+
+![image-20220226163226751](README/image-20220226163226751.png)
+
+然后更改目录指引就可以了
+
+![image-20220226163410762](README/image-20220226163410762.png)
+
+发现`body`自带`margin`值，为了把它去掉，写一个全局样式引入，`@`代表上面定义的`srcDir`
+
+![image-20220226163719834](README/image-20220226163719834.png)
 
 
 
+按需引入`element`，一样要安装`babel-plugin-component`，只不过不用配置`babel.config.js`
 
+然后在`nuxt.config.js`中引入，这个`js`文件就是正常的按需引入写法
 
+![image-20220227191538414](README/image-20220227191538414.png)
 
+然后还需一个配置项：
 
-
-
+![image-20220227191623060](README/image-20220227191623060.png)
 
 
 
