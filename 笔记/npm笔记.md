@@ -13,6 +13,14 @@ npm config get registry
 
 
 
+清除缓存：npm cache clean --force
+
+
+
+
+
+
+
 开发模式项目启动时指定地址和端口号，注意有些端口号是和浏览器自带冲突的
 
 在`nuxt`项目中：
@@ -22,3 +30,6 @@ npm config get registry
 在`vue`项目中：
 
 ![image-20220227164551474](README/image-20220227164551474.png)
+
+
+

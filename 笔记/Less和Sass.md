@@ -67,9 +67,11 @@ Less笔记最好用的其实就是它的官网https://less.bootcss.com/
 
 # Sass
 
-和Less一样要分两步npm安装：sass、sass-loader
+安装：![image-20220309130015449](README/image-20220309130015449.png)
 
-而且也是要特定的版本，否则一样会出现版本过高的问题，原因：https://blog.csdn.net/weixin_45821811/article/details/121394553
+对应的`node`版本为14，npm版本为6
+
+所以如果直接`npm i node-sass sass-loader`的话，会默认安装最新版本，然后会因为种种原因不兼容导致报错
 
 **sass**和html一样**有严格的缩进风格**，和css编写规范有着很大的出入，是**不使用花括号和分号的**
 
