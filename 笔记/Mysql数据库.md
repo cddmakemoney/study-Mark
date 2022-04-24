@@ -1,3 +1,5 @@
+https://www.cnblogs.com/zhangkanghui/p/9613844.html教程
+
 # 安装
 
 目录下新建一个文件`my.ini`
@@ -19,6 +21,24 @@
 在安装目录下的**bin目录**下，用管理员权限打开`cmd`窗口，然后：
 
 ![image-20220316013515824](README/image-20220316013515824.png)
+
+mysqld --initialize --user=mysql --console
+
+mysqld --install
+
+[mysqld]
+#设置3306端口
+port=3306
+character-set-server=utf8
+#创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+[mysqI]
+#设置mysq|客户端默认字符集
+default-character-set=utf8
+[client]
+#设置mysq|客户端连接服务端时默认使用的端口
+port=3306
+default-character-set=utf8
 
 # 卸载
 
