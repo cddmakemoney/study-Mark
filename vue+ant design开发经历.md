@@ -122,7 +122,9 @@
 
 然后在`main,js`引入这个`rem.js`就好了
 
+如果想针对某个地方不想让它转为rem的话，在这里写：
 
+![image-20220602141315196](README/image-20220602141315196.png)
 
 
 
@@ -701,6 +703,8 @@ row中的num和length是我在获取数据方法中自行加进去的属性，le
 编辑页面实现代码：
 
 ![image-20220513095939622](README/image-20220513095939622.png)
+
+**上面的`className`写错了，应该是直接写`class`**
 
 注意：`customRender`和`scopedSlots`是不能共存的，这意味着编辑页面的模板代码得从`scopedSlots`中迁移到`customRender`的`children`中，在这里面要遵循`JSX`语法，这个语法有很多细节
 
