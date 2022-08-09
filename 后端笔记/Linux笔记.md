@@ -54,7 +54,9 @@ centOS 7的自带Base.reop中默认是没有chrome的（就是上述镜像源的
 
 ![image-20220808112316545](README/image-20220808112316545.png)
 
-建立repo：
+
+
+回到正题，接下来建立谷歌浏览器的repo：
 
 ```shell
 vim /etc/yum.repos.d/google-chrome.repo
@@ -73,27 +75,37 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 
 安装：`yum -y install google-chrome-stable --nogpgcheck`，这里可能会提示镜像连接失败等等错误，连续试几次就好
 
+## 常用操作命令
 
+https://blog.csdn.net/weixin_44191814/article/details/120091363
 
-其他小命令：
+输入su，之后输入密码可进入root模式；或者直接sudo再接命令也一样
 
-systemctl  set-default graphical.target   #设置开机默认图形桌面启动 
+按tab键可自动补全命令，如匹配到多个命令，连续按两次可列出匹配到的所有命令
 
-systemctl  set-default multi-user.target  #设置开机默认命令行启动
+whereis [软件名] **#查找软件位置**
 
-```
-yum -y update
-```
+ifconfig或者ip a（等同于ip addr）**#查看ip地址**
 
-升级所有包同时也升级软件和系统内核
+ps aux|grep [进程名] **#查找进程**
 
-```
-yum -y upgrade
-```
+![image-20220809095303239](README/image-20220809095303239.png)
 
-只升级所有包，不升级软件和系统内核
+这行的意思是：查询的grep命令本身
 
+netstat -tunlp **#显示tcp、udp的端口和进程等相关情况**
 
+netstat -tunlp|grep [端口号] **#查看具体某个端口占用情况**
+
+## 其他小命令
+
+systemctl  set-default graphical.target   **#设置开机默认图形桌面启动** 
+
+systemctl  set-default multi-user.target  **#设置开机默认命令行启动**
+
+yum -y update **#升级所有包同时也升级软件和系统内核**
+
+yum -y upgrade **#只升级所有包，不升级软件和系统内核**
 
 传说中的删库跑路法：rm -rf /*，也就是从根目录下删除所有文件，最后连系统都不存在了
 
@@ -109,7 +121,7 @@ https://blog.csdn.net/wang121213145/article/details/124314157
 
 https://www.cnblogs.com/fuzongle/p/12825048.html
 
-注意`vi /etc/profile`的时候，这个JAVA_HOME的路径要设置为如下所示，上述文章的这个路径有误，导致后面安装maven的时候会提示JAVA_HOME不正确
+注意`vi /etc/profile`的时候，这个JAVA_HOME的路径要设置为如下所示，也就是安装后的实际文件夹；如设置错误将导致后面安装maven的时候会提示JAVA_HOME不正确
 
 ![image-20220803155130859](README/image-20220803155130859.png)
 
@@ -125,9 +137,17 @@ https://blog.csdn.net/a774630093/article/details/79270080
 
 https://blog.csdn.net/qq_37345604/article/details/90034424
 
-停止nginx服务：到![image-20220808161333831](README/image-20220808161333831.png)路径下输入`./nginx -s stop`
+添加到环境变量：https://blog.csdn.net/qq_43795348/article/details/121733715，就可以在任意路径使用命令
 
-重载nginx服务：`./nginx -s reload`
+启动命令：nginx
+
+停止命令：nginx -s quit
+
+重载命令：nginx -s reload
+
+proxy_pass代理转发规则：https://www.jb51.net/article/227243.htm
+
+总结：看代理转发路径端口号后面，**但凡有斜杆出现**，那么代理真实路径等于proxy_pass+匹配部分后面的路径（也就是不包含匹配部分），反之则包含。
 
 # 启动后端
 
@@ -136,3 +156,11 @@ https://blog.csdn.net/qq_37345604/article/details/90034424
 2、上传后端代码直接`java -jar 后端打包文件.jar`（war文件也是同样的命令）
 
 3、数据库导入sql文件
+
+# 启动前端
+
+设置nginx：前端打包代码路径随便放，之后在root参数设置好就行，没有硬性规定一定得是哪个路径
+
+![image-20220809150511973](README/image-20220809150511973.png)
+
+之后浏览器输入server_name的路径就可以访问了
