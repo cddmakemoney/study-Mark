@@ -642,6 +642,8 @@ children:
 
 解决方案：因为问题出现在嵌套子表格里面，所以要给子表格的dataSource重新赋值，让`<a-table>`检测到数据源变动了，它才会重新渲染，并且一定要是新地址的数据源，，直接写`var temp=item.detailList[0]`是没用的
 
+或者写`数组B= JSON.parse(JSON.stringify(数组A));`
+
 ![image-20220424094309185](README/image-20220424094309185.png)
 
 # 22.4.25
@@ -732,3 +734,14 @@ row中的num和length是我在获取数据方法中自行加进去的属性，le
 
 
 
+# 22.8.18
+
+这里要用item，不要用index，否则在监听事件里面得到的会是下标，并且也会有即使配置了defaultValue，实际下拉框也没有勾选的BUG
+
+![image-20220818173020855](README/image-20220818173020855.png)
+
+# 22.9.2
+
+用标签页包裹表单时，会发生数据丢失的现象；例如`getFieldValue`时发现是undefined。
+
+这时给tab-pane加上forceRender就可以了

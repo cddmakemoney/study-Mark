@@ -26,7 +26,14 @@ centOS中打开终端：
 
 `ONBOOT`改成yes：![image-20220801151558279](README/image-20220801151558279.png)
 
-这是`vim`编辑器，操作方法是按`i`键进入修改模式，按`ESC`退出修改模式；然后直接输入`:wq`即可保存并退出
+```
+这是vim编辑器，默认是命令模式，操作方法是按i键进入修改模式，按ESC退出修改模式并返回命令模式；输入:wq即可保存并退出
+命令模式下常用操作：
+输入dd可删除一整行；
+按v可以进入视图模式，这时按方向键可以移动光标并多选，按下d即可多行删除；
+按u可撤销上一次操作
+大写ZZ直接退出编辑器
+```
 
 之后终端输入`service network restart`重启网络就能联网了
 
@@ -151,7 +158,7 @@ proxy_pass代理转发规则：https://www.jb51.net/article/227243.htm
 
 # 启动后端
 
-1、用到的数据库系统（mysql）中创建后端用到的数据库
+1、项目所用到的数据库系统（例如用到了mysql和MongoDB）中创建后端用到的数据库
 
 2、上传后端代码直接`java -jar 后端打包文件.jar`（war文件也是同样的命令）
 
@@ -164,3 +171,11 @@ proxy_pass代理转发规则：https://www.jb51.net/article/227243.htm
 ![image-20220809150511973](README/image-20220809150511973.png)
 
 之后浏览器输入server_name的路径就可以访问了
+
+# 安装https
+
+报错：
+
+![image-20220810162059653](README/image-20220810162059653.png)
+
+重启一下就好：systemctl restart snapd.service

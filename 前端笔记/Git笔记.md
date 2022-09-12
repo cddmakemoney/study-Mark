@@ -1,5 +1,7 @@
 # GIT：分布式版本控制系统
 
+## 基本流程
+
 创建好一个远程仓库后，远程仓库什么都不用初始化。复制它的SSH，到VSCODE里面添加远程仓库→设置好别名再回车。
 
 然后VSCODE里面暂存、提交所有本地文件
@@ -24,11 +26,13 @@
 
  
 
+## 命令
+
 创建【SSH密钥】ssh-keygen -t rsa -C "youremail@example.com"
 
 
 
-登录或修改账号、邮箱：
+### 登录或修改账号、邮箱
 
 git config --global user.name
 
@@ -36,7 +40,7 @@ git config --global user.email
 
 
 
-卸载全局账号
+### 卸载全局账号
 
 git config --global --unset user.name
 
@@ -44,7 +48,7 @@ git config --global --unset user.email
 
  
 
-常用命令：
+### 常用命令
 
 从新建仓库到上传代码的流程：
 
@@ -129,3 +133,16 @@ git add .
 git commit -m "update gitignore"
 
  
+
+当前处于A分支进行开发中，假如这时想切换到B分支看看，一般是直接commit当前修改再切换，以前我都是这么做的；
+
+其实这么随意commit不好，应该git stash（储藏），将没有提交的内容缓存并从当前分支中移除，再checkout到其他分支；
+
+完事了再切回来之后，git stash pop就可以把之前缓存的内容拿出来了
+
+
+
+在本地已经commit了，还没推送，此时想取消之前的commit：
+
+git reset HEAD~
+

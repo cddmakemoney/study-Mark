@@ -72,7 +72,13 @@ https://blog.csdn.net/weixin_51560103/article/details/120894983
 
 连接名是用户自定义的，只是为了方便自己识别是哪个数据库而已；然后对数据库进行修改直接保存，就能自动同步到宝塔了
 
+# 基础概念
 
+如数据库使用UTF-8，则英文占1个字节，中文占3个字节
+
+最长的字符串数据类型：`longtext`：最大长度4294967295个字节
+
+`text`类型：最大长度65535个字节，相当于能存储21845个汉字
 
 # sql语法
 
@@ -176,3 +182,16 @@ drop database 库名;
 举例：先把sql文件传输进系统中，然后use想要导入的某个数据库，再`source /usr/local/bootdo.sql;`
 
 ![image-20220808151905538](README/image-20220808151905538.png)
+
+# 报错不兼容：only_full_group_by
+
+在win系统中mysql安装目录的my.ini文件编辑：
+
+[mysqld]的下面加上：sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+
+之后重启mysql服务
+
+
+
+
+
