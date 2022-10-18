@@ -745,3 +745,9 @@ row中的num和length是我在获取数据方法中自行加进去的属性，le
 用标签页包裹表单时，会发生数据丢失的现象；例如`getFieldValue`时发现是undefined。
 
 这时给tab-pane加上forceRender就可以了
+
+
+
+watch监视一个空对象，在某个方法中对该对象新增属性，发现不会触发watch，原因是VUE不会监视新增的属性
+
+解决方法为：`this.$set(targetObj,key,value)`

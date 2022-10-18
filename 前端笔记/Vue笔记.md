@@ -1,4 +1,6 @@
-# 过滤器
+# Vue2
+
+## 过滤器
 
 Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。由"管道符"指示
 `{{data|methods}}`，也可以再添加methods，用	|	间隔。添加之后它们之间的执行顺序是从左到右的：
@@ -7,7 +9,7 @@ Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。�
 
 
 
-# v-model
+## v-model
 
 v-model 指令用来在 input、select、textarea、checkbox、radio 等表单控件元素上创建【双向数据绑定】，
 根据表单上的值，自动更新绑定的元素的值。
@@ -34,7 +36,7 @@ v-model 指令用来在 input、select、textarea、checkbox、radio 等表单�
 
 
 
-# `$listeners`和`$attrs`
+## `$listeners`和`$attrs`
 
 用处：组件想要用到它的祖上组件绑定给它的子组件的属性或者事件时，通常的方法就是无限的写props以及向某组件的子组件绑定事件调用自身的`this.$emit()`这样一代一代的传下去
 
@@ -64,7 +66,7 @@ v-model 指令用来在 input、select、textarea、checkbox、radio 等表单�
 
 ![image-20220222001354826](README/image-20220222001354826.png)
 
-# 动态变量名
+## 动态变量名
 
 想根据形参的值动态的引用某个变量的值？这样做：
 
@@ -82,9 +84,9 @@ v-model 指令用来在 input、select、textarea、checkbox、radio 等表单�
 
 
 
-# 服务端渲染
+## 服务端渲染
 
-## Nuxt.js
+### Nuxt.js
 
 Nuxt.js 是一个基于 Vue.js 的通用应用框架，重点是实现了服务端渲染
 
@@ -165,6 +167,72 @@ Nuxt.js 会依据 `pages` 目录结构自动生成模块的路由配置。
 
 
 暂时没有办法保持原页面目录结构，只能把页面组件全部剪切到`pages`目录下
+
+
+
+# Vue3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Vue Router（V4版本）
+
+V4是Vue3专用的，V3对应Vue2
+
+## 创建
+
+![image-20221012143951585](README/image-20221012143951585.png)
+
+
+
+
+
+### 路由传参
+
+`params`和`query`
+
+- **params**：
+
+用`params`必须和`name`一起传，不能用`path`
+
+![image-20221012110323502](README/image-20221012110323502.png)
+
+且路由配置中要写好`name`
+
+![image-20221012111125957](README/image-20221012111125957.png)
+
+**版本V4.1.4中，用`params`进行路由传参已被废除**
+
+
+
+- **query:**
+
+和`path`或者`name`都可以
+
+![image-20221012111453679](README/image-20221012111453679.png)
 
 
 
