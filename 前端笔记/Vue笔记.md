@@ -200,7 +200,7 @@ Nuxt.js 会依据 `pages` 目录结构自动生成模块的路由配置。
 
 ## Vue Router（V4版本）
 
-V4是Vue3专用的，V3对应Vue2
+V4版本是Vue3专用的，V3版本对应Vue2
 
 ## 创建
 

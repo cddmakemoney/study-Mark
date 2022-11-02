@@ -28,7 +28,23 @@
 
 ## 命令
 
+SSH连接方式：
+
+一、**本地生成**
+
 创建【SSH密钥】ssh-keygen -t rsa -C "youremail@example.com"
+
+查看密钥：右键桌面 GIT bash here
+
+1、`cd ~/.ssh`
+
+2、`cat id_rsa.pub`就看到密钥了
+
+二、**网站绑定（gitHub或者gitee）**
+
+![image-20221102152753017](README/image-20221102152753017.png)
+
+复制粘贴即可
 
 
 
