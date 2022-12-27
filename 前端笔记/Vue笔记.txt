@@ -1,51 +1,6 @@
 
 
 
-v-text指令的作用：设置标签的内容，会替换全部内容:
- <h2 v-text="message">北海</h2>  	//北海两个字不会显示出来
-
-v-if直接操作DOM元素，原理是从DOM树中移除。v-show操作的是display。所以频繁操作用show，反之用if。因为操作DOM元素对性能的消耗比较大
-一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。
-因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
-
-当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级。
-
-v-bind 缩写：
-<!-- 完整语法 -->
-<a v-bind:href="url"></a>
-<!-- 缩写 -->
-<a :href="url"></a>
-
-v-on 缩写：
-<!-- 完整语法 -->
-<a v-on:click="doSomething"></a>
-<!-- 缩写 -->
-<a @click="doSomething"></a>
-
-		【V-for必须要有key】						
-v-for 指令需要以 	别名 in 对象或数组	 形式的特殊语法， “对象或数组”是源数据数组并且 “别名” 是数组元素迭代的别名。
-（意思就是in前面的命名随便取，它只是个工具人）
-你也可以用 of 替代 in 作为分隔符，因为它更接近 JavaScript 迭代器的语法
-数组方法：
-push()
-pop()
-shift()
-unshift()
-splice()
-sort()
-reverse()
-
- 
-迭代【对象】：
-v-for 可以通过一个对象的属性来迭代数据【键值】：v-for="value in object"
-也可以提供第二个的参数为【键名】：v-for="(value, key) in object"
-第三个参数为索引【下标】：v-for="(value, key, index) in object"
-
-迭代【数组】：第一个参数为值，第二个为下标，没有第三个参数
-
-我们可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，
-只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
-
 computed 属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
  var vm = new Vue({
   data: { a: 1 },
@@ -109,99 +64,6 @@ watch:{					//监视keyWord:这个属性
 			2.配置input的value属性:
 					(1)v-model的初始值是非数组，那么收集的就是checked（勾选 or 未勾选，是布尔值）
 					(2)v-model的初始值是数组，那么收集的的就是value组成的数组
-
-
-
-
-
-【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】
-				这部分最好直接看官方文档
-				组件里的this都是VC（Vuecompone）
-			       一个组件的 data 选项必须是一个函数：
-
-data: function () {
-  return {
-    count: 0
-  }
-}
-
-
-组件：
-全局的基本格式：
-<div id="app">
-    <runoob></runoob>
-</div>
- 
-<script>
-// 注册
-Vue.component('runoob', {
-  template: '<h1>自定义组件!</h1>'
-})
-// 创建根实例
-new Vue({
-  el: '#app'
-})
-</script>
-
-
-
-prop 是子组件用来接受父组件传递过来的数据的一个自定义属性。
-props: ['message']
- prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。
-如果像这样设置了props，那么父组件的数据需要通过 props 把数据传给子组件。
-
-	<child message="hello!"></child>
-  或者：	<child v-bind:message="parentMsg"></child>	//parentMsg是data里的数据
-
-Vue.component('child', {
-  // 声明 props
-  props: ['message'],
-  // 同样也可以在 vm 实例中像 "this.message" 这样使用
-  template: '<span>{{ message }}</span>'
-})
-
-
-通常你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些 property 的名称和值分别是 prop 各自的名称和类型：
-props: {
-  title: String,		//  随便命名：类型
-  likes: Number,
-  isPublished: Boolean,
-  commentIds: Array,
-  author: Object,
-  callback: Function,
-  contactsPromise: Promise // or any other constructor
-}
-
-
-
-父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！
-vm.$emit( 'event', arg )	【注意事件名要单引号或者双引号】
-$emit 绑定一个自定义事件event，当这个这个语句被执行到的时候，就会将参数arg传递给父组件，父组件通过@event监听并接收参数。
-
-注意局部注册的组件在其子组件中不可用。例如，如果你希望 ComponentA 在 ComponentB 中可用，则你需要这样写：
-
-var ComponentA = { /* ... */ }
-
-var ComponentB = {
-  components: {
-    'component-a': ComponentA
-  },
-  // ...
-}
-
-
-【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】【】
-
-父元素里有子元素，如果点击了子元素, 那么click 事件不仅会发生在子元素上，也会发生在其父元素上，依次不停地向父元素冒泡
-事件修饰符 ：
-阻止冒泡：.stop	：<div id="me" v-on:click.stop="doc">
-优先触发 .capture	<div id="father" v-on:click.capture="doc">
-		当冒泡发生的时候，就会优先让father捕捉事件。
-无法被触发： .self 	<div id="father" v-on:click.self="doc">
-只触发一次：.once	<div id="father" v-on:click.once="doc">
-
-vue中的.sync修饰符用法及原理详解:
-https://blog.csdn.net/liushijun_/article/details/92426854
 
 
 
@@ -273,28 +135,6 @@ new Vue({
 
 
 
-
-
-
-
-混入：	就是多个组件合起来
-var mixin = {
-    created: function () {
-        document.write('混入调用' + '<br>')
-    }
-}
-new Vue({
-    mixins: [mixin],
-        created: function () {
-        document.write('组件调用' + '<br>')
-    }
-});
-	//输出：   混入调用
-		组件调用
-
-混入对象的钩子将在组件自身钩子之前调用。
-数据对象在内部会进行递归合并，并在发生冲突时以组件数据优先。
-如果 methods 选项中有相同的函数名，则 Vue 实例优先级会较高
 
 vm.$options：
 用于当前 Vue 实例的初始化选项。需要在选项中包含自定义 property 时会有用处：

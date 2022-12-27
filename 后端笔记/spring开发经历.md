@@ -52,6 +52,26 @@
 
 之后的导入SQL文件等都是在Navicat上直接右键MongoDB里面的数据库进行导入
 
+```
+Map<String, Object> map
+```
+
+## 接收前端数据
+
+1、正常的用VO接收
+
+2、用`Map<String, Object> map`接收
+
+3、用`JSONObject obj`接收
+
+其中2和3接收处理的一样的步骤；其中`Map`如果对于某个key的value是数组的操作：
+
+![image-20221205170250240](README/image-20221205170250240.png)
+
+
+
+
+
 
 
 ## 多文件上传

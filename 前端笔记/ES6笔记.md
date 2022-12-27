@@ -148,3 +148,54 @@ generator函数用于异步业务场景，该函数和普通函数不一样；�
  
 
  
+
+
+
+# 闭包
+
+模拟堆栈：
+
+```js
+  function createStack() {
+      return {
+        items: [],
+        push(item) {
+          this.items.push(item);
+        },
+        pop() {
+          return this.items.pop();
+        },
+      };
+    }
+
+    const stack = createStack();
+    stack.push(10);
+    stack.items = [];
+    console.log(stack.items);//输出[]
+```
+
+以上代码可以看到，外界是可以随便修改items数组本身的
+
+**经过封装：**
+
+```js
+    function createStack() {
+      const items = [];
+      return {
+        push(item) {
+          items.push(item);
+        },
+        pop() {
+          return items.pop();
+        },
+      };
+    }
+
+    const stack = createStack();
+    stack.push(10);
+    console.log(stack.items); //输出undefined
+```
+
+由于此更改，从`createStack()`作用域外部无法访问或修改`items`数组。`items`现在是私有变量，堆栈被封装：只有`push()`和`pop()`方法是公共的。
+
+`push()`和`pop()`方法，作为闭包，从`createStack()`函数作用域捕获变量`items`。
