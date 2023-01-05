@@ -52,10 +52,6 @@
 
 之后的导入SQL文件等都是在Navicat上直接右键MongoDB里面的数据库进行导入
 
-```
-Map<String, Object> map
-```
-
 ## 接收前端数据
 
 1、正常的用VO接收

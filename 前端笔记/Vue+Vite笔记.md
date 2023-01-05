@@ -39,6 +39,14 @@
 
 注意：当 `v-if` 与 `v-for` 一起使用时，`v-for` 具有比 `v-if` 更高的优先级。**这点与Vue3相反**
 
+```VUE
+    //因为v-for优先级高，所以v-if可以读取到todo属性，正常渲染
+    //（能用，但是不应该用，todos应该换成计算属性，让其返回过滤后的列表，以此代替v-if完成判断）
+    <li v-for="todo in todos" v-if="!todo.isComplete">
+      {{ todo.name }}
+    </li>
+```
+
 `v-for`：**以下用法与Vue3相同**
 
 遍历对象：`v-for="(value, key, index) in object"`，括号内分别为：键值、键名、下标
@@ -102,7 +110,7 @@ Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。�
 
 父组件：
 
-```VUE
+```js
 /* 和data平级的配置项 */
 provide() {
     return {
@@ -117,7 +125,7 @@ provide() {
 
 子组件：
 
-```vue
+```js
   mounted() {
     this.father.fatherMethod();
     this.fatherMethod();
@@ -130,9 +138,47 @@ provide() {
 
 
 
+## 自定义指令
 
+一、全局注册
 
+```JS
+Vue.directive('color', {
+  //还有bind等钩子函数可选，详情看官网；常用的就inserted、bind
+  inserted(el, binding) {
+    el.style.color = binding.value;
+  },
+});
+```
 
+使用：
+
+```vue
+<div v-color="'pink'">test</div>
+```
+
+附带参数、修饰符、`binging`值等跟Vue3相差无几
+
+二、局部注册
+
+```JS
+export default {
+  directives: {
+    color: {
+      inserted(el, binding) {
+        el.style.color = binding.value;
+      },
+    },
+  },
+};
+
+//也可以简写，默认在 bind 和 update 时触发相同行为
+ directives: {
+    color: function (el, binding) {
+      el.style.color = binding.value;
+    },
+  },
+```
 
 
 
@@ -144,7 +190,7 @@ provide() {
 
 例子：	
 
-```
+```VUE
 下面这个例子的父子关系：
 <App>  
 	<son> 
@@ -274,7 +320,26 @@ Vue2中的`.sync`在三代已经废除
 
 其他特性和组合式API逻辑一样
 
+## 条件、列表渲染
 
+当 `v-if` 与 `v-for` 一起使用时，`v-if` 具有比 `v-for` 更高的优先级
+
+```VUE
+//因为v-if优先级高，所以v-if访问不到todo，页面报错
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo.name }}
+</li>
+
+//可改用template循环，这样更直观
+<template v-for="todo in todos">
+  <li v-if="!todo.isComplete">
+    {{ todo.name }}
+  </li>
+</template>
+
+```
+
+`v-for`：**用法与Vue2相同**
 
 ## 全局属性
 
@@ -354,7 +419,7 @@ ref也可以用来定义对象或者数组类型的数据，内部会通过react
 
 因为使用了 `<script setup>` 的组件是**默认私有**的：一个父组件无法访问到一个使用了 `<script setup>` 的子组件中的任何东西
 
-## 组件通信
+## 父子通信
 
 1、**传递props**
 
@@ -368,9 +433,15 @@ ref也可以用来定义对象或者数组类型的数据，内部会通过react
 
 ## CSS深度选择器
 
-**:deep(某种选择器)**或者**::v-deep(某种选择器)**
+**:deep(某种选择器)**或者**::v-deep(某种选择器)**（同sass的写法）
 
-注意：
+![image-20230103151335600](README/image-20230103151335600.png)
+
+
+
+
+
+**容易踩的坑注意：**
 
 ![image-20221219170802792](README/image-20221219170802792.png)
 
@@ -424,7 +495,7 @@ ref也可以用来定义对象或者数组类型的数据，内部会通过react
 
 父组件：
 
-```VUE
+```JS
 import { provide, ref } from 'vue';
 
 let fatherData = ref('i am fatherData');
@@ -433,7 +504,7 @@ provide('fatherData', fatherData);
 
 子组件：
 
-```
+```JS
 import { inject } from 'vue';
 let data = inject('fatherData');
 ```
@@ -460,7 +531,7 @@ let data = inject('fatherData');
 
 诞生目的：替代mixins，以解决它的弊端：**不清晰的数据来源**、**命名空间冲突**、**隐式的跨 mixin 交流**：
 
-```
+```JS
 //demo.vue文件
   mixins: [ a, b, c, d, e, f, g ], 
   mounted() {
@@ -482,13 +553,53 @@ let data = inject('fatherData');
 
 
 
+## 自定义指令
+
+一、全局注册
+
+钩子函数里面常用的两个参数：`el`为指令绑定到的元素，这可以用于直接操作 DOM；`bingding`包含传递给指令的`value`等各种属性
+
+![image-20221229153607711](README/image-20221229153607711.png)
+
+可选用的生命周期钩子函数除了**beforeCreate**其他都有：![image-20221229153529123](README/image-20221229153529123.png)
+
+还提供了个函数形式的简写方式：![image-20221229154453402](README/image-20221229154453402.png)
+
+使用：
+
+```vue
+<div v-color="color">Message</div>
+```
+
+可以顺便传参数和修饰符对象，举例传了个参数`age`和修饰符`funcModify`
+
+![image-20221229153502228](README/image-20221229153502228.png)
+
+得到的`bingding`是：
+
+![image-20221229154151027](README/image-20221229154151027.png)
 
 
 
+另外参数可以是动态的：
+
+```VUE
+ <div v-color:[arg]="'pink'">test</div>
+```
+
+二、局部注册
+
+在 `<script setup>` 中，任何以 `v` 开头的驼峰式命名的变量都可以被用作一个自定义指令：
+
+![image-20221229155235494](README/image-20221229155235494.png)
+
+选项式API：
+
+![image-20221229160102454](README/image-20221229160102454.png)
 
 
 
-
+**注：当在组件上使用自定义指令时，它会始终应用于组件的根节点，而组件可能含有多个根节点；当应用到一个多根组件时，指令将会被忽略且抛出一个警告，且指令不能通过 `v-bind="$attrs"` 来传递给一个不同的元素。总的来说，不推荐在组件上使用自定义指令。**
 
 
 
