@@ -180,6 +180,18 @@ export default {
   },
 ```
 
+## transition（过渡效果）
+
+本节只介绍和Vue3不同的地方，相同之处直接看下面Vue3章节
+
+- 自定义过渡类名：![image-20230112160053422](README/image-20230112160053422.png)
+
+
+
+
+
+
+
 
 
 ## `$listeners`和`$attrs`
@@ -600,6 +612,64 @@ let data = inject('fatherData');
 
 
 **注：当在组件上使用自定义指令时，它会始终应用于组件的根节点，而组件可能含有多个根节点；当应用到一个多根组件时，指令将会被忽略且抛出一个警告，且指令不能通过 `v-bind="$attrs"` 来传递给一个不同的元素。总的来说，不推荐在组件上使用自定义指令。**
+
+
+
+## transition（过渡效果）
+
+要素：围绕CSS属性`transition`：过渡可以为一个元素在不同状态之间切换的时候定义不同的过渡效果
+
+- 过渡类：
+
+1. `v-enter-from`：进入动画的起始状态。在元素插入之前添加，在元素插入完成后的下一帧移除。
+2. `v-enter-active`：进入动画的生效状态。应用于整个进入动画阶段。在元素被插入之前添加，在过渡或动画完成之后移除。这个 class 可以被用来**定义进入动画的持续时间、延迟与速度曲线类型**。
+3. `v-enter-to`：进入动画的结束状态。**在元素插入完成后的下一帧被添加** (也就是 `v-enter-from` 被移除的同时)，在过渡或动画完成之后移除。
+4. `v-leave-from`：离开动画的起始状态。在离开过渡效果被触发时立即添加，在一帧后被移除。
+5. `v-leave-active`：离开动画的生效状态。应用于整个离开动画阶段。在离开过渡效果被触发时立即添加，在过渡或动画完成之后移除。这个 class 可以被用来定义离开动画的持续时间、延迟与速度曲线类型。
+6. `v-leave-to`：离开动画的结束状态。**在一个离开动画被触发后的下一帧被添加** (也就是 `v-leave-from` 被移除的同时)，在过渡或动画完成之后移除。
+
+- `<Transition>` 仅支持单个元素或组件作为其插槽内容。如果内容是一个组件，这个组件必须仅有一个根元素。
+
+​		过渡效果开始：`v-enter-from`、`v-enter-active`、`v-enter-to`
+
+​		过渡效果结束：`v-leave-from`、`v-leave-active`、`v-leave-to`
+
+- 可以命名：`<Transition name="Jack">`，此时需要改前缀`.Jack-enter-active`
+
+- 自定义过渡类名，例如在使用第三方类时很有用：` <Transition enter-active-class="animate__animated animate__tada">`
+
+​		属性：![image-20230112155928648](README/image-20230112155928648.png)
+
+可以覆盖掉默认的过渡类效果：
+
+![image-20230111101706906](README/image-20230111101706906.png)
+
+- 原生JS监听过渡效果结束（transitionend、animationend），需要对DOM元素添加事件监听：
+
+
+![image-20230111111917691](README/image-20230111111917691.png)
+
+- 监听 `<Transition>` 组件：加上**钩子函数**（Vue的CSS过渡类是默认实现了调用`done()`效果的，所以如果改用钩子函数，某些需求的实现效果是需要主动调用`done()`的）
+
+  函数分为进入和离开：`@before-enter`、`@enter`、`@after-enter`和`@before-leave`、`@leave`、`@after-leave`
+
+![image-20230111163001147](README/image-20230111163001147.png)
+
+- 钩子函数可以和CSS过渡类并用，但可以CSS规则会干扰过渡效果，这时候可以`:css="false"`来跳过CSS过渡类，但这时候钩子函数就全权负责控制什么时候过渡结束了。
+
+- 属性`mode`过渡模式：适用场景：组件切换时，进入和离开的元素同时开始过渡动画：
+
+  ![noMode](README/noMode.gif)
+
+  有时候并不想要这样的效果，可以加个属性`mode='in-out'`：（先进后出）
+
+  ![in-outMode](README/in-outMode.gif)
+
+  `mode='out-in'`：（先出后进）：
+
+  ![out-inMode](README/out-inMode.gif)
+
+- 属性`appear`，DOM元素初次渲染时就应用一次过渡效果
 
 
 

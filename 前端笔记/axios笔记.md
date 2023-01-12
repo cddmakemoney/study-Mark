@@ -8,6 +8,7 @@ const http = axios.create({
 http.post(url,data);
 //或者不创建实例
 //axios.post(url,data);
+//axios.get...等等实例方法
 ```
 
 创建`axios`实例时可填写的配置：https://www.axios-http.cn/docs/req_config
