@@ -48,9 +48,25 @@ p.marked{ }: 为所有 class="marked" 的 p 元素指定一个样式。
 
 更简洁、一目了然
 
+**属性选择器**
 
-
-
+```CSS
+/* 存在 title 属性的<a> 元素 */
+a[title] {
+  color: red;
+}
+/*以下类推*/
+/* 存在 href 属性并且属性值匹配"https://example.org"的<a> 元素 */
+a[href="https://example.org"]
+/* 存在 href 属性并且属性值包含"example"的<a> 元素 */
+a[href*="example"] 
+/* 存在 href 属性并且属性值结尾是".org"的<a> 元素 */
+a[href$=".org"] 
+/* 存在 id 属性并且属性值开头是"Jack"的<a> 元素 */
+a[id^="Jack"] 
+/* 存在 class 属性并且属性值包含以空格分隔的"logo"的<a>元素 */
+a[class~="logo"] 
+```
 
 
 

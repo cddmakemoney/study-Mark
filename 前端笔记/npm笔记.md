@@ -56,9 +56,9 @@ npm config get registry
 
 依赖安装：
 
-npm install `依赖名` -save-dve， 简写：npm i `依赖名` -D ，自动把模块和版本号添加到devdependencies。开发环境中要用到的	
+npm install `依赖名` --save-dve， 简写：npm i `依赖名` -D ，自动把模块和版本号添加到devdependencies。开发环境中要用到的	
 
-npm install `依赖名` -save ，简写：npm i `依赖名` -S ，自动把模块和版本号添加到dependencies。生产环境中要用到的
+npm install `依赖名` --save ，简写：npm i `依赖名` -S ，自动把模块和版本号添加到dependencies。生产环境中要用到的
 
 加后缀`-g`可对全局依赖进行操作
 

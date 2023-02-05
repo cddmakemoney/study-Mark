@@ -71,11 +71,11 @@
 
 详写：
 
-![image-20221226165116582](README/image-20221226165116582.png)
+![image-20230201093825560](README/image-20230201093825560.png)
 
 简写：
 
-![image-20221226165324173](README/image-20221226165324173.png)
+![image-20230201093948143](README/image-20230201093948143.png)
 
 ## 过滤器
 
@@ -184,13 +184,11 @@ export default {
 
 本节只介绍和Vue3不同的地方，相同之处直接看下面Vue3章节
 
-- 自定义过渡类名：![image-20230112160053422](README/image-20230112160053422.png)
+- 写在`<Transition>`上的自定义过渡类名：![image-20230112160053422](README/image-20230112160053422.png)
 
+- CSS过渡类名，和Vue3相比，叫法少了个from
 
-
-
-
-
+  ![image-20230113095318782](README/image-20230113095318782.png)
 
 
 
@@ -671,19 +669,33 @@ let data = inject('fatherData');
 
 - 属性`appear`，DOM元素初次渲染时就应用一次过渡效果
 
+## transitionGroup
 
+和transition的区别在于是针对`v-for`循环列表作动画效果、支持多个元素作为插槽内容
 
+- 过渡模式在这里不可用，因为我们不再是在互斥的元素之间进行切换。
+- 列表中的每个元素都**必须**有一个独一无二的 `key` attribute。
 
+- 平滑删除效果：![transitionGroup删除的平滑移动](README/transitionGroup删除的平滑移动.gif)，需要`v-move配合`：![image-20230113103356904](README/image-20230113103356904.png)
 
-## Vue Router（V4版本）
+  该动画内部的实现，Vue 使用了一个叫 [FLIP](https://aerotwist.com/blog/flip-your-animations/) 简单的动画队列
+
+## KeepAlive
+
+缓存组件实例状态`<KeepAlive>`
+
+- 可以`<KeepAlive :include="['a', 'b']">`来指定需要缓存的组件；用`exclude`可以排除组件。
+- 使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，无需再手动声明（**注意**：需要缓存的组件如果使用了setup语法糖，但是script标签里面没有任何东西，那么是不会自动生成`name`选项的）。如果用选项式API，则需要在组件写上对应的`name`选项
+
+# Vue Router（V4版本）
 
 V4版本是Vue3专用的，V3版本对应Vue2
 
-### 创建
+## 创建
 
 ![image-20221012143951585](README/image-20221012143951585.png)
 
-### 路由传参
+## 路由传参
 
 `params`和`query`
 
@@ -709,15 +721,105 @@ V4版本是Vue3专用的，V3版本对应Vue2
 
 
 
-# Vite构建工具
+# Vuex（V3版本）
 
-创建：**npm create vite**，然后按提示操作即可
+**对应Vue2**
+
+## 基本配置
+
+![image-20230203170429202](README/image-20230203170429202.png)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Vue Cli
+
+创建：**vue create [name]**，然后按提示操作即可
+
+## 模式与环境变量
+
+- 在项目根目录中创建下列文件来指定环境变量：
+
+```
+.env                # 在所有的环境中被载入
+.env.[mode]         # 只在指定的模式中被载入
+# mode默认有三种：development | production | test，也可自定义，例如stage，这时要在命令行后面加参数后缀：
+如：vue-cli-service build --mode stage
+
+//环境文件的内容为：键=值
+//如：VUE_APP_NAME=Jack
+```
+
+**（指定模式优先级最高）**
+
+- 只有 `NODE_ENV`，`BASE_URL` 和以 `VUE_APP_` 开头的变量才能被访问
+- 访问环境变量是通过`process.env`
+
+![image-20230202155525162](README/image-20230202155525162.png)
+
+## 基本配置文件
+
+![image-20230202161841197](README/image-20230202161841197.png)
+
+# Vite
+
+## 模式与环境变量
+
+与Vue Cli不同之处：
+
+- 只有以 `VITE_` 为开头的变量才能被访问
+- 访问环境变量是通过`import.meta.env`
+
+![image-20230202162738727](README/image-20230202162738727.png)
+
+## 基本配置文件
+
+![image-20230202170335127](README/image-20230202170335127.png)
 
 # 问题合集
 
-1、如果用`TS`，在使用第三方库的时候，要注意有没有对应的`TS`版本，比如`lodash`，就有个`@types/lodash`
+## 一、第三方库安装版本
+
+如果用`TS`，在使用第三方库的时候，要注意有没有对应的`TS`版本，比如`lodash`，就有个`@types/lodash`
 
 直接安装`npm i lodash`之后使用会提示：![image-20221215154633646](README/image-20221215154633646.png)
 
@@ -728,3 +830,16 @@ V4版本是Vue3专用的，V3版本对应Vue2
 完善`tsconfig.json`即可：![image-20221215155514261](README/image-20221215155514261.png)
 
 **（如果一开始安装的就是`@types/lodash`，就可以不用搞配置文件，没有任何报错）**
+
+## 二、视图更新
+
+常见视图不更新的问题：例如一个数组`arr : [{name:'jack'}]`，现在让里面的这个对象加一个属性`this.arr[0].money=100`，发现视图没有更新，原因如下：
+
+![image-20230203145745940](README/image-20230203145745940.png)
+
+解决方案有三种：
+
+![image-20230203150656466](README/image-20230203150656466.png)
+
+**this.$forceUpdate()也行，但是能不用就不用**
+
