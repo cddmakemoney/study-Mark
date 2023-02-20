@@ -120,6 +120,8 @@
 
 场景：springboot里面调用Python脚本
 
+【下面是排错过后的正确配置】
+
 ![image-20230220213051647](README/image-20230220213051647.png)
 
 Python脚本：
