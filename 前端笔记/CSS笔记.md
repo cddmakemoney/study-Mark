@@ -300,3 +300,33 @@ notice {
 }
 ```
 
+
+
+# 常见样式处理
+
+子元素需要在父元素内部的最底部：
+
+![image-20230210094331842](README/image-20230210094331842.png)
+
+```CSS
+  .father {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: relative;
+    }
+    .son {
+      width: 100%;
+      height: 20px;
+      background-color: green;
+      bottom: 0;
+      position: absolute;
+    }
+```
+
+
+
+
+
+
+

@@ -193,5 +193,13 @@ drop database 库名;
 
 
 
+# 经历
+
+
+
+delete中用select，select的结果是name为全数字或全字母的
+
+DELETE from demo_table WHERE name in(select temp.name from(select name from demo_table where REGEXP_LIKE(name,'^([\u4e00-\u9fa5]+)$')) temp);
+
 
 

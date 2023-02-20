@@ -179,3 +179,12 @@ proxy_pass代理转发规则：https://www.jb51.net/article/227243.htm
 ![image-20220810162059653](README/image-20220810162059653.png)
 
 重启一下就好：systemctl restart snapd.service
+
+
+
+
+
+
+
+
+

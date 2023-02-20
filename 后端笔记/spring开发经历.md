@@ -108,6 +108,48 @@
 
 
 
+## easy code插件
+
+生成的xml文件默认是放在mapper文件夹，但是要根据你的controller写在哪个包，放在哪个包：
+
+![image-20230213154821260](README/image-20230213154821260.png)
+
+
+
+## 调用Python
+
+场景：springboot里面调用Python脚本
+
+![image-20230220213051647](README/image-20230220213051647.png)
+
+Python脚本：
+
+![image-20230220213158851](README/image-20230220213158851.png)
+
+服务器上安装了Python3，Chrome、Chromedriver（版本号需一一对应）、selenium
+
+![image-20230220214436592](README/image-20230220214436592.png)
+
+![image-20230220214449299](README/image-20230220214449299.png)
+
+![image-20230220214539412](README/image-20230220214539412.png)
+
+本地机器也同样配置好了需要的环境，但是部署到centos7 上就报错`chrome not reachable`
+
+在公司弄了一天查遍国内外各大网站没搞定，回去之后再仔细想想
+
+`netstat -tunlp`命令：
+
+![image-20230220214027228](README/image-20230220214027228.png)
+
+发现两个浏览器相关的进程还在挂着，想了想是我回去之后，又一顿乱操作脚本，忘记browser.quit()了，随后根据PID杀了这两个进程：
+
+![image-20230220214153101](README/image-20230220214153101.png)![image-20230220214158322](README/image-20230220214158322.png)
+
+然后就发现接口调用Python脚本居然通了（看过的最初的文章说的就是因为忘记browser.quit()导致进程一直被占用，后续的脚本调用就会失败，但是我白天在公司明明记得确认过服务器进程了是没有google-chrome的）
+
+
+
 
 
 

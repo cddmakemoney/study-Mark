@@ -138,6 +138,21 @@ provide() {
 
 
 
+## CSS变量由script传入
+
+单文件组件的 `<style>` 标签支持使用 `v-bind` CSS 函数将 CSS 的值链接到动态的组件状态
+
+```HTML
+// <script>
+let myColor='red';
+// <style>
+p {
+  color: v-bind(myColor);
+}
+```
+
+
+
 ## 自定义指令
 
 一、全局注册
@@ -461,6 +476,21 @@ ref也可以用来定义对象或者数组类型的数据，内部会通过react
 
 如果想禁用这种效果并且用的是`<script setup>`，需要加个额外的`script`标签：![image-20221221111119543](README/image-20221221111119543.png)
 
+## CSS变量由script传入
+
+单文件组件的 `<style>` 标签支持使用 `v-bind` CSS 函数将 CSS 的值链接到动态的组件状态
+
+```HTML
+// <script>
+const myColor = ref('red')
+// <style>
+p {
+  color: v-bind('myColor');
+}
+```
+
+
+
 ## 透传 Attributes
 
 **一**、简单来说就是父组件传递子组件，却没有被子组件声明为`props`或`emits`的 `attribute`，可以理解为**漏网之鱼**，并且会自动被添加到子组件的根元素上，如果子组件还包含着其他组件，则会一直传下去
@@ -729,23 +759,51 @@ V4版本是Vue3专用的，V3版本对应Vue2
 
 ![image-20230203170429202](README/image-20230203170429202.png)
 
+`main.js`中引入：
+
+![image-20230206163525710](README/image-20230206163525710.png)
+
+## 在组件中使用
+
+一、通过`this.$store`访问
+
+![image-20230206162822755](README/image-20230206162822755.png)
+
+二、通过四个map方法访问：
+
+- （store的方法）`mapMutations、mapActions`放在**methods**里面 
+- （store的数据）`mapState、mapGetters`放在**computed**里面
+
+![image-20230206153322811](README/image-20230206153322811.png)
+
+然后就可以直接`this.increment()`、`this.count`类似使用；
+
+这四个map方法的参数也可以换成对象的写法：
+
+```JS
+...mapMutations({myIncrement:'increment'})  //组件中就可以this.myIncrement()来使用；其他三个map方法类推
+```
 
 
 
+# Vuex（V4版本）
 
+**对应Vue3**
 
+通过调用 `useStore` 函数，来在 `setup` 钩子函数中访问 store。等于在选项式 API 访问 `this.$store` 
 
+```JS
+import { useStore } from 'vuex';
+const store = useStore();
+```
 
+注意：如果是在一个js文件中，正确的使用应该是
 
+`import store from '/store/index.js'`
 
+`store.commit('updateUserData');`
 
-
-
-
-
-
-
-
+而不是跟在setup里面一样`useStore`
 
 
 
