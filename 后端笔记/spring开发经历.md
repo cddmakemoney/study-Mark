@@ -150,9 +150,97 @@ Python脚本：
 
 然后就发现接口调用Python脚本居然通了（看过的最初的文章说的就是因为忘记browser.quit()导致进程一直被占用，后续的脚本调用就会失败，但是我白天在公司明明记得确认过服务器进程了是没有google-chrome的）
 
+### 	2.24问题排查
+
+上面说的不完全对，今天发现又启动不了了；发现必须先把脚本的browser.quit()给注释掉，然后在服务器脚本路径下敲命令：
+
+python XXX.py，这时候因为服务器没退出浏览器，所以进程依旧存在
+
+![image-20230224114744914](README/image-20230224114744914.png)
+
+这时再把browser.quit()取消注释，java才能正常执行脚本，并且后续不会打开更多的浏览器，始终只有一个浏览器进程
 
 
 
+### 3.16
+
+1、如上所述，得先让进程存在一个google-chrome，即先打开一个浏览器，后端才能成功调用脚本，还需要注意一点，就是先直接在服务器上调用一次脚本，并且这个脚本的`option.add_argument("--remote-debugging-port=9222")`这个参数，JAVA调用的正式脚本也要有，还得一模一样
+
+2、发现脚本有时候没等页面加载完就读取了，直接time.sleep(1)等待
+
+
+
+### 本地启动、附带参数
+
+![image-20230224105230313](README/image-20230224105230313.png)
+
+JAVA附带参数：
+
+![image-20230224105303383](README/image-20230224105303383.png)
+
+
+
+
+
+
+
+
+
+## Map转实体类
+
+![image-20230228143852478](README/image-20230228143852478.png)
+
+
+
+## 瘦身：分离lib
+
+没分离之前打包大小是100M左右，分离之后1M
+
+pom.xml配置
+
+```xml
+<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 依赖包输出目录，将来不打进jar包里 -->
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layout>ZIP</layout>
+                    <includes>
+                        <include>
+                            <!--去除依赖文件，简化每次上传服务器大小-->
+                            <groupId>nothing</groupId>
+                            <artifactId>nothing</artifactId>
+                        </include>
+                    </includes>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+```
+
+启动命令：  java -Dloader.path=你的lib文件路径 -jar xxx
+
+例如我的服务器上执行命令：
+
+sudo -u springboot nohup /usr/java/jdk1.8.0_121/bin/java -Dloader.path=/www/wwwroot/hxoa_back/lib -jar /www/wwwroot/hxoa_back/bootdo-2.0.0.jar --server.port=8089 >> /www/wwwroot/hxoa_back/back.log 2>&1 &
 
 
 

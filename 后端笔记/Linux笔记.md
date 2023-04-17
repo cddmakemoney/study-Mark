@@ -100,7 +100,9 @@ ps aux|grep [进程名] **#查找进程**
 
 这行的意思是：查询的grep命令本身
 
-netstat -tunlp **#显示tcp、udp的端口和进程等相关情况**
+netstat -tunlp **显示tcp、udp的端口和进程等相关情况**
+
+pkill [name]    **根据进程名称杀死**
 
 netstat -tunlp|grep [端口号] **#查看具体某个端口占用情况**
 
@@ -154,7 +156,7 @@ https://blog.csdn.net/qq_37345604/article/details/90034424
 
 proxy_pass代理转发规则：https://www.jb51.net/article/227243.htm
 
-总结：看代理转发路径端口号后面，**但凡有斜杆出现**，那么代理真实路径等于proxy_pass+匹配部分后面的路径（也就是不包含匹配部分），反之则包含。
+总结：看代理转发路径端口号后面，**但凡有斜杆出现**，那么代理真实路径等于proxy_pass+匹配部分后面的路径，也就是不包含匹配部分，反之则包含。
 
 # 启动后端
 
@@ -180,11 +182,158 @@ proxy_pass代理转发规则：https://www.jb51.net/article/227243.htm
 
 重启一下就好：systemctl restart snapd.service
 
+# chrome和chromedriver
+
+https://blog.csdn.net/China_hdy/article/details/126739461
+
+chromedriver要解压放到/usr/bin中去赋予权限
 
 
 
+## selenium设置
+
+![image-20230416023657444](README/image-20230416023657444.png)
+
+设置这四个就行，其他的设置的话，发现会存在爬取文字内容对不上号的问题
+
+# python
+
+## pip安装
+
+yum -y install epel-release
+
+yum install python-pip
+
+pip install --upgrade pip
+
+## 软链接（关系到使用什么版本的Python）
+
+输入python再按两下tab键，可以看到有什么版本的Python被安装了
+
+**进入到该目录中**
+
+cd /usr/bin/
+
+**查询python软链接，如果有红色闪烁，代表链接的文件已经不见了**
+
+ls -l /usr/bin/python*
+
+**删除python软链接**
+
+rm -rf /usr/bin/python
 
 
 
+**查询pip软链接**
+
+ls -l /usr/bin/pip*
+
+**删除pip软链接**
+
+rm -rf /usr/bin/pip
 
 
+
+**创建软链接**
+
+ln -s /usr/bin/python3 /usr/bin/python
+
+（此时输入命令python时，用的是python3）
+
+ln -s /usr/bin/python2 /usr/bin/python
+
+（此时输入命令python时，用的是python2）
+
+
+
+# 境外服务器搭梯子
+
+## shadowsocks（方法一，裸连，容易被墙，已弃用）
+
+大致流程：https://www.itwordsweb.com/linux_doc/ss.html
+
+注意：在服务器中输入相应的梯子命令时，过程中有两次出错，一次直接断开服务器连接了，不知道为啥，不过等上去再输入
+
+cd /usr/local/src
+
+./shadowsocks.sh 2>&1 | tee shadowsocks.log
+
+之后，按流程进行，还是成功完成了
+
+
+
+过程中还有点插曲，梯子服务搭建时一直反复报错：Another app is currently holding the yum lock； waiting for it to exit...
+
+输入rm -f /var/run/yum.pid解决，再重复上面的梯子搭建过程就行
+
+### 开启BBR加速，拉满服务器带宽
+
+服务器输入命令，直接一键下载、安装：（会提示重启服务器，按提示输入y重启就好）
+
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+
+然后输入以下命令查看是否已经开启BBR
+
+lsmod | grep bbr
+
+![image-20230409020945686](README/image-20230409020945686.png)
+
+这样则成功开启了
+
+该脚本作者文章（要翻墙）：https://teddysun.com/489.html
+
+## V2Ray（方法二，推荐）
+
+买一个域名，配合Cloudflare中转V2Ray流量，能隐藏服务器真实IP地址
+
+服务器的V2Ray脚本安装文章：
+
+https://github.com/233boy/v2ray/wiki/%E4%BD%BF%E7%94%A8Cloudflare%E4%B8%AD%E8%BD%ACV2Ray%E6%B5%81%E9%87%8F#%E6%8F%90%E9%86%92
+
+### 域名、Cloudflare操作
+
+**修改域名DNS服务器**：哪里买的域名，就在哪里修改DNS服务器为Cloudflare的DNS服务器，例如我在namesilo买的域名：
+
+![image-20230417013955895](README/image-20230417013955895.png)
+
+红框中的地址来源于Cloudflare添加站点时的提示：
+
+![image-20230417014030776](README/image-20230417014030776.png)
+
+**其他步骤上面文章操作即可**
+
+### 服务器操作
+
+大致简化流程：
+
+1、服务器输命令：bash <(curl -s -L https://git.io/v2ray.sh)
+
+2、传输协议选择 WebSocket + TLS (即是选择 4 )，V2Ray 端口随便，不要是 80 和 443 即可，**然后输入你的域名，域名解析 Y ，自动配置 TLS 也是 Y** ，其他就默认吧，一路回车。等待安装完成，此时已自动开启BBR加速
+
+3、输入命令：v2ray url，即可生成vmess url 链接，粘贴到客户端V2RayN即可上网
+
+![image-20230417013614758](README/image-20230417013614758.png)
+
+# 已经被墙的服务器，怎么SSH连接
+
+保证最起码有一个机场能用的节点，不用全局代理，回车选中就好，例如：
+
+![image-20230417015142600](README/image-20230417015142600.png)
+
+然后打开Xshell，右键服务器点属性，点击代理：
+
+![image-20230417015312758](README/image-20230417015312758.png)
+
+以下**类型**、**主机**、**端口**号为固定填写：
+
+![image-20230417015347906](README/image-20230417015347906.png)
+
+然后确保选中配置：![image-20230417015508782](README/image-20230417015508782.png)
+
+然后在客户端操作，确保为10808
+
+![image-20230417015436357](README/image-20230417015436357.png)
+
+此时便可直接连接：
+
+![image-20230417015639830](README/image-20230417015639830.png)

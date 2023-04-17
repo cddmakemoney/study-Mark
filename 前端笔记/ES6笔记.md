@@ -199,3 +199,54 @@ generator函数用于异步业务场景，该函数和普通函数不一样；�
 由于此更改，从`createStack()`作用域外部无法访问或修改`items`数组。`items`现在是私有变量，堆栈被封装：只有`push()`和`pop()`方法是公共的。
 
 `push()`和`pop()`方法，作为闭包，从`createStack()`函数作用域捕获变量`items`。
+
+
+
+# Module语法
+
+```javascript
+// 写法一
+export var m = 1;
+
+// 写法二
+var m = 1;
+export {m};
+
+// 写法三
+var n = 1;
+export {n as m};
+
+【引用】
+import { m } from 'XXX.js'
+
+```
+
+```javascript
+// 报错
+function f() {}
+export f;
+
+// 正确
+export function f() {};
+
+// 正确
+function f() {}
+export {f};
+
+【引用】
+import { f } from 'XXX.js'
+```
+
+```javascript
+export default function f() {
+}
+
+// 或者写成
+function f() {
+}
+
+export default foo;
+
+【引用】
+import 任意名字 from 'XXX.js'
+```

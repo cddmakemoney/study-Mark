@@ -751,6 +751,30 @@ V4版本是Vue3专用的，V3版本对应Vue2
 
 
 
+## 编程式路由
+
+![image-20230303093905749](README/image-20230303093905749.png)
+
+访问路由信息：
+
+![image-20230303093927460](README/image-20230303093927460.png)
+
+## 路由模式
+
+hash 模式是用 `createWebHashHistory()` 创建的
+
+HTML5 模式是用 `createWebHistory()` 创建 HTML5 模式，推荐使用这个模式，需要配合Nginx做设置：
+
+```
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+
+
+
+
 # Vuex（V3版本）
 
 **对应Vue2**
@@ -872,6 +896,40 @@ const store = useStore();
 ## 基本配置文件
 
 ![image-20230202170335127](README/image-20230202170335127.png)
+
+## 配置@别名
+
+**vite.config.js配置**
+
+![image-20230301113532830](README/image-20230301113532830.png)![image-20230301113539684](README/image-20230301113539684.png)
+
+
+
+安装插件，提供智能路径提示：![image-20230301113647547](README/image-20230301113647547.png)
+
+插件扩展设置：![image-20230301113717582](README/image-20230301113717582.png)
+
+```
+  "path-intellisense.mappings": {
+    "@/": "${workspaceFolder}/src",
+    "/": "${workspaceFolder}",
+    "lib": "${workspaceFolder}/lib",
+    "global": "/Users/dummy/globalLibs"
+  },
+  "path-intellisense.autoTriggerNextSuggestion": true,
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 问题合集
 

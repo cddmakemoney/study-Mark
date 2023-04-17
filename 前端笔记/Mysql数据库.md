@@ -152,7 +152,7 @@ https://blog.csdn.net/weixin_51560103/article/details/120894983
 
 
 
-`select * from [表名] where [字段] between 值 anb 值`     **闭合区间**
+`select * from [表名] where [字段] between 值 and 值`     **闭合区间**
 
 查询该表中字段存在指定范围之内的记录，并展示这些记录的全部字段；如果不想展示全部，把`*`改成要展示的字段即可
 

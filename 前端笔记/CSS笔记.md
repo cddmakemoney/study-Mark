@@ -226,10 +226,10 @@ Less笔记最好用的其实就是它的官网https://less.bootcss.com/
 
 ## Sass
 
-安装：`npm i sass sass-loader -D`（sass有很多发行版本，`node-sass`已被弃用，`dart-sass`最为被推荐）
+安装：`npm i sass -D`（sass有很多发行版本，`node-sass`已被弃用，`dart-sass`最为被推荐）
 
 - dart-sass 和 node-sass都是用来将sass编译成css的工具，所以都依赖sass-loader。但node-sass 与 node.js 版本相关联，这就导致，一旦本地 node.js 升级，就会出现 node-sass 无法工作的情况
-- npm 上的 dart-sass 包已被弃用，直接更名为 sass
+- **npm 上的 dart-sass 包已被弃用，直接更名为 sass**
 - dart-sass 不支持`/deep/`，要改成`::v-deep`
 
 **sass**和html一样**有严格的缩进风格**，和css编写规范有着很大的出入，是**不使用花括号和分号的**

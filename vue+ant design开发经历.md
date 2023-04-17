@@ -751,3 +751,79 @@ row中的num和length是我在获取数据方法中自行加进去的属性，le
 watch监视一个空对象，在某个方法中对该对象新增属性，发现不会触发watch，原因是VUE不会监视新增的属性
 
 解决方法为：`this.$set(targetObj,key,value)`
+
+
+
+
+
+# 23.3.1
+
+vue3+vite+antd3
+
+表单使用变化很大：
+
+```vue
+      <a-form
+        ref="formRef"
+        :model="formState"
+        @finish="onFinish"
+        @finishFailed="onFinishFailed"
+      >
+        <a-form-item
+          label="账号"
+          name="username"
+          :rules="[{ required: true, message: '请输入账号！' }]"
+        >
+          <a-input
+            v-model:value="formState.username"
+            allowClear
+            placeholder="请输入账号"
+          >
+          </a-input>
+        </a-form-item>
+
+        <a-form-item
+          label="密码"
+          name="password"
+          :rules="[{ required: true, message: '请输入密码！' }]"
+        >
+          <a-input-password
+            v-model:value="formState.password"
+            allowClear
+            placeholder="请输入密码"
+          >
+          </a-input-password>
+        </a-form-item>
+
+        <div id="flexBox">
+          <a-button type="primary" htmlType="submit"> 登录 </a-button>
+        </div>
+      </a-form>
+```
+
+```JS
+//表单数据对象
+const formState = reactive({
+  username: '',
+  password: '',
+});
+//form组件的ref
+let formRef = ref();
+const otherFunc = () => {
+  //第二种得到表单数据对象的方法
+  console.log(formRef.value.getFieldsValue());
+};
+//登录按钮组件没有绑定任何方法，依然能调用onFinish的方法原理是按钮被包裹在了form组件里面，并且设置htmlType="submit"
+//放在哪个form组件就触发谁的onFinish
+const onFinish = (values) => {
+  console.log('Success:', values);
+};
+//未通过检验调用
+const onFinishFailed = (errorInfo) => {
+  console.log('Failed:', errorInfo);
+};
+```
+
+![image-20230301163233400](README/image-20230301163233400.png)
+
+这两个要一样
